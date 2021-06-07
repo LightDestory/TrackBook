@@ -1,15 +1,15 @@
 {
-  "name": "trackboob_server",
+  "name": "trackbook_server",
   "version": "1.0.0",
-  "description": "",
+  "description": "The server-side logic of my TrackBook applicaiton",
   "main": "index.js",
   "scripts": {
     "start": "node dist/server.js",
     "dev": "nodemon src/server.ts",
-    "build":"tsc -p ."
+    "build": "tsc -p ."
   },
   "keywords": [],
-  "author": "",
+  "author": "LightDestory",
   "license": "ISC",
   "devDependencies": {
     "@types/express": "^4.17.12",
@@ -20,6 +20,7 @@
     "typescript": "^4.3.2"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "sqlite3": "^5.0.2"
   }
 }
