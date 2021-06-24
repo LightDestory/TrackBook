@@ -1,28 +1,34 @@
-import express, {Application, Request, Response} from 'express';
-import {loginRoute} from './apis/loginRoute';
-import {userRoute} from './apis/userRoute';
-const configutation = require('dotenv').config();
+import express, {Application} from 'express';
+import bodyParser from "body-parser";
+import {accountRoute} from "./routes/accountRoute";
+import {userRoute} from "./routes/userRoute";
+import {bookRoute} from "./routes/bookRoute";
+import db from "./db/database"
+
+
+const configuration = require('dotenv').config();
 const app: Application = express();
 
 
 function bootstrap() {
-    if(configutation.error){
-        throw configutation.error;
+    if(configuration.error){
+        console.error(`Unable to load environment settings. Error: \r\n${configuration.error}`);
+        process.exit();
     }
-    console.log(configutation.parsed);
+    console.log("Loaded configuration!");
+    db.isConnected()
+        .then(() =>{
+            console.log(`Connection with database established!`);
+            app.use( express.json(), express.text(), bodyParser.urlencoded({extended: false}));
+            app.use('/api/account', accountRoute);
+            app.use('/api/user', userRoute);
+            app.use('/api/book', bookRoute);
+            app.listen(process.env.PORT, () => {console.log(`Listening to ${process.env.PORT}!`)});
+        })
+        .catch(() => {
+            console.error(`Unable to connect to the database!`);
+            process.exit();
+        });
 }
 
-bootstrap()
-/*app.use( express.json(), express.text() );
-
-app.use('/login', loginRoute);
-
-app.use('/user', userRoute);
-
-app.get('/', (req: Request, res: Response) => {
-    console.log("TRIGGERED GET");
-    res.sendStatus(200);
-});
-
-app.listen(process.env.PORT, () => {console.log(`Listening to ${process.env.PORT}!`)});
-*/
+bootstrap();
