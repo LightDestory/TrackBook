@@ -21,22 +21,22 @@ userRoute.get('/:id', (req: Request, res: Response) => {
 });
 
 userRoute.post('/:id', (req: Request, res: Response) => {
-    if(Object.keys(req.body).length == 0){
-        res.status(400).json({"status": "error", "code": "1", "message": "Invalid request's parameter!"});
-        return;
-    }
     let id = req.params.id;
     let con = db.getConnection();
     con('books')
         .select('isbn', "id")
         .then(( rows : any[]) => {
-            let ids = new Map();
-            rows.forEach((row : any) => {ids.set(row.isbn, row.id)});
-            let data = req.body.map((book: any) => ({"user_id": id, "book_id": ids.get(book.isbn), "page_read": book.page_read, "title": book.title}));
             con('readings')
                 .del()
                 .where("user_id", id)
                 .then(() => {
+                    if((Object.keys(req.body).length == 0)){
+                        res.status(200).json({"status": "success", "result": "Library flushed!"});
+                        return;
+                    }
+                    let ids = new Map();
+                    rows.forEach((row : any) => {ids.set(row.isbn, row.id)});
+                    let data = req.body.map((book: any) => ({"user_id": id, "book_id": ids.get(book.isbn), "page_read": book.page_read, "title": book.title}));
                     con('readings')
                         .insert(data)
                         .then(() =>{

@@ -3,7 +3,7 @@ import Knex from "knex";
 import db from "../db/database"
 
 export function learnBooks(req: Request, res: Response, next: NextFunction) {
-    if(req.method == "GET"){
+    if(req.method == "GET" || (Object.keys(req.body).length == 0)) {
         next();
     } else {
         let con = db.getConnection();
