@@ -44,7 +44,7 @@ accountRoute.post('/login', (req: Request, res: Response) => {
         .where("email", email)
         .then((users: any[]) => {
             if (users.length === 0) {
-                res.status(401).json({"status": "error", "result": "Invalid Password!"});
+                res.status(401).json({"status": "error", "code": 3, "result": "Invalid Password!"});
             } else {
                 res.status(200).json({"status": "success", "result": {"penName": users[0].pen_name, "token": `${users[0].id}-${users[0].password}`}});
             }
