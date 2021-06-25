@@ -41,6 +41,7 @@ accountRoute.post('/login', (req: Request, res: Response) => {
     con.select('id', 'pen_name', "password")
         .from("users")
         .where("password", password)
+        .where("email", email)
         .then((users: any[]) => {
             if (users.length === 0) {
                 res.status(401).json({"status": "error", "result": "Invalid Password!"});
