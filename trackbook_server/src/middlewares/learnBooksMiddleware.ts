@@ -14,7 +14,6 @@ export function learnBooks(req: Request, res: Response, next: NextFunction) {
                 let library = rows.map((row : any) => {return row.isbn});
                 let user_isbns = data.map((book : any) => { return book.isbn;});
                 let unknown_books = user_isbns.filter((book : string) => !library.includes(book));
-                console.log(unknown_books);
                 if(unknown_books.length == 0) {
                     next();
                 } else {

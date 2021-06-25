@@ -21,6 +21,10 @@ userRoute.get('/:id', (req: Request, res: Response) => {
 });
 
 userRoute.post('/:id', (req: Request, res: Response) => {
+    if(Object.keys(req.body).length == 0){
+        res.status(400).json({"status": "error", "code": "1", "message": "Invalid request's parameter!"});
+        return;
+    }
     let id = req.params.id;
     let con = db.getConnection();
     con('books')
