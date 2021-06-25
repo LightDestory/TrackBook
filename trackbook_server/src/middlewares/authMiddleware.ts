@@ -19,7 +19,8 @@ export function authCheck(req: Request, res: Response, next: NextFunction) {
         }
     }
     if(req.originalUrl.includes("user")){
-        if(token[0] != req.originalUrl.split("/")[-1]){
+        let tmp = req.originalUrl.split("/");
+        if(token[0] != tmp[tmp.length-1]){
             res.status(401).json({"status": "error", "code": "-2", "result": "You don't have permission there!"});
             return;
         }

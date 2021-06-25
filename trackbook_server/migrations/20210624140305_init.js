@@ -8,7 +8,7 @@ exports.up = function(knex) {
     }).createTable("books", tableBuilder => {
         tableBuilder.increments("id").primary("BOOK_ID").unsigned();
         tableBuilder.string("isbn", 13).notNullable().unique("BOOK_ISBN");
-        tableBuilder.string("title", 100).nullable();
+        tableBuilder.string("title", 100).notNullable();
     }).createTable("readings", tableBuilder => {
         tableBuilder.increments().primary().unsigned();
         tableBuilder.string("title", 100).notNullable();
