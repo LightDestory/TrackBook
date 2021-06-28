@@ -28,33 +28,34 @@ There are 3 main routes: *account*, *user* and *book*.
 
 ### Account route
 
-**Role**: *Allow the registration of new users and authentication of existing users*.
+**Role**: *Allow the registration of new users, authentication of existing users or password's change function*.
 
-| API                     | Method | Role                 | Parameter                                                          | Response                                                                                                                                                                  |
-| ----------------------- | ------ | -------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| _/api/account/register_ | POST   | Register a new user  | **email**:string <br> **penName**:string <br> **password**:md5hash | **JSON Object**: <br>*Error*: <br> { *status*:string, *code*:string, *message*:string} <br> *Success* <br> { *status*:string,  *message*:string }                         |
-| _/api/account/login_    | POST   | Authenticate an user | **email**:string <br> **password**:md5hash                         | **JSON Object**: <br>*Error*: <br> { *status*:string, *code*:string, *message*:string} <br> *Success* <br> { *status*:string, *result*:*JSONObject* (*penName*,*token*) } |
+| API                     | Method | Role                     | Parameter                                                              | Response                                                                            |
+| ----------------------- | ------ | ------------------------ | ---------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| _/api/account/register_ | POST   | Register a new user      | **email**:string <br> **penName**:string <br> **password**:md5hash     | **JSON Object**: <br> { *status*:string, *result*:string }                          |
+| _/api/account/login_    | POST   | Authenticate an user     | **email**:string <br> **password**:md5hash                             | **JSON Object**: <br> { *status*:string, *result*: {penName:string, token:string} } |
+| _/api/account/change_   | POST   | Change a user's password | **email**:string <br> **penName**:string <br> **new_password**:md5hash | **JSON Object**: <br> { *status*:string, *result*:string }                          |
 
 ### User route
 
 **Role**: *Allow the backup and restore of user's data*.
 
-**Authentication**: To **access this API you must fill the Authorization header** of the request with the token received with the _login api_.
+**Authentication**: To **access this API you must fill the Authorization header** of the request with the **token** received with the _login api_.
 
-| API             | Method | Role                 | Parameter                                                               | Response                                                                                            |
-| --------------- | ------ | -------------------- | ----------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| _/api/user/:id_ | GET    | Retrieve user's data | *id*:user's id (internal value)                                         | **JSON Array**: [{*title*:string, *isbn*:string, *page_read*:string}, ...]                          |
-| _/api/user/:id_ | POST   | Backup user's data   | *id*:user's id (internal value) and user's data in JSON on body request | **JSON Object**: <br> *Success* <br> { *status*:string, *result*:*JSONObject* (*penName*,*token*) } |
+| API          | Method | Role                 | Parameter                                 | Response                                                                                   |
+| ------------ | ------ | -------------------- | ----------------------------------------- | ------------------------------------------------------------------------------------------ |
+| _/api/user/_ | GET    | Retrieve user's data | None                                      | **JSON Array**: [{*title*:string, *isbn*:string, *page_read*:string, *color*:string}, ...] |
+| _/api/user/_ | POST   | Backup user's data   | user's data in JSON Array on body request | **JSON Object**: <br> *Success* <br> { *status*:string, *result*:string}                   |
 
 ### Book route
 
 **Role**: *Search for book's title inside application database*.
 
-**Authentication**: To **access this API you must fill the Authorization header** of the request with the token received with the _login api_.
+**Authentication**: To **access this API you must fill the Authorization header** of the request with the **token** received with the _login api_.
 
-| API               | Method | Role                 | Parameter                           | Response                                                                                             |
-| ----------------- | ------ | -------------------- | ----------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| _/api/book/:isbn_ | GET    | Retrieve book's data | *isbn*:book's isbn (internal value) | **JSON OBject**: <br> *Success* <br> { *status*:string, *result*:*JSONObject* (*penName*,*token*) }] |
+| API               | Method | Role                 | Parameter     | Response                                                 |
+| ----------------- | ------ | -------------------- | ------------- | -------------------------------------------------------- |
+| _/api/book/:isbn_ | GET    | Retrieve book's data | *isbn*:string | **JSON OBject**: <br>{ *status*:string, *result*:string} |
 
 ## :gear: Setup
 
@@ -66,10 +67,11 @@ You must fulfill the prerequisites before building the back-end:
 If you got everything, we can start building:
 
 1) Install all the dependencies using __npm install__ inside the back-end repo folder.
-2) Make a copy of _.env.dist_ from templates folder and paste it on back-end root folder, then fill it with your settings.
+2) Make a copy of _.env.dist_ from tesmplates folder and paste it on back-end root folder, then fill it with your settings.
 3) Initialize the database using __npx knex:migrate up__.
 4) Build the application running __npm run build__.
 5) Run the application running __npm run start__.
+6) The back-end will listening to locahost at your prefered port. You can now set up a reverse proxy or a direct DNS record to your machine. This is sys-admin stuff that do not requires my explaination.
 
 ## :warning: Notes
 

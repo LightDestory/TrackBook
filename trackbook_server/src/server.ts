@@ -23,7 +23,8 @@ function bootstrap() {
             app.use('/api/account', accountRoute);
             app.use('/api/user', userRoute);
             app.use('/api/book', bookRoute);
-            app.listen(process.env.PORT, () => {console.log(`Listening to ${process.env.PORT}!`)});
+            let port = process.env.PORT || 5000;
+            app.listen(port, () => {console.log(`Listening to ${port}!`)});
         })
         .catch(() => {
             console.error(`Unable to connect to the database!`);

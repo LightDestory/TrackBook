@@ -13,7 +13,7 @@ class Database {
         return this.interface.raw('select 1');
     }
 
-    public static getInstance() {
+    public static getInstance(): Database {
         if(!Database.instance){
             Database.instance = new Database()
         }
@@ -25,6 +25,6 @@ class Database {
         return this.interface;
     }
 }
-const db = Database.getInstance();
+const db: Database = Database.getInstance();
 
 export default db
