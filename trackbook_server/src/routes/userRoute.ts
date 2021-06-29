@@ -16,5 +16,5 @@ userRoute.get('/', (req: Request, res: Response) => {
 userRoute.post('/', (req: Request, res: Response) => {
     let id : string | undefined = req.headers.authorization?.split("-")[0]
     if(id)
-        updateUserData(id, req.body, res);
+        updateUserData(id, req.body.books, res);
 });
