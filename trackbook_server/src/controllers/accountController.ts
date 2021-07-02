@@ -2,6 +2,7 @@ import {Response} from "express";
 import Knex from "knex";
 import db from "../db/database";
 import {Sender} from "../utils/Sender";
+import {User} from "../types/user.type";
 
 function registerUser(email: string, password: string, pen_name: string, response: Response): void{
     // @ts-ignore
@@ -9,7 +10,7 @@ function registerUser(email: string, password: string, pen_name: string, respons
     con.select()
         .from("users")
         .where("email", email)
-        .then((rows: any[]) => {
+        .then((rows: User[]) => {
             if (rows.length === 0) {
                 con('users')
                     .insert({'email': email, 'pen_name': pen_name, 'password': password})
@@ -29,7 +30,7 @@ function loginUser(email: string, password: string, response: Response): void {
         .from("users")
         .where("password", password)
         .where("email", email)
-        .then((users: any[]) => {
+        .then((users: User[]) => {
             if (users.length === 0) {
                 Sender.getInstance().sendError(response, Sender.ERROR_TYPE_INVALID_PASSWORD)
             } else {
@@ -45,7 +46,7 @@ function changePassword(email: string, pen_name: string, new_password: string, r
         .from("users")
         .where("email", email)
         .where('pen_name', pen_name)
-        .then((rows: any[]) => {
+        .then((rows: User[]) => {
             if (rows.length === 0) {
                 Sender.getInstance().sendError(response, Sender.ERROR_TYPE_USER_NOT_FOUND);
             } else {
@@ -53,7 +54,7 @@ function changePassword(email: string, pen_name: string, new_password: string, r
                     .update("password", new_password)
                     .where("id", rows[0].id)
                     .then(() => {
-                        Sender.getInstance().sendResult(response, 200, "Password has been changed")
+                        Sender.getInstance().sendResult(response, 200, "Password has been changed!")
                 });
             }
         });

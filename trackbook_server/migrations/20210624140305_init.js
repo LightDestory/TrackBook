@@ -15,6 +15,7 @@ exports.up = function(knex) {
         tableBuilder.string("title", 100).notNullable();
         tableBuilder.bigInteger("page_read").notNullable().defaultTo(0);
         tableBuilder.string("color").notNullable();
+        tableBuilder.date("start_read").notNullable();
         tableBuilder.bigInteger("user_id").unsigned().notNullable();
         tableBuilder.bigInteger("book_id").unsigned().notNullable();
         tableBuilder.foreign("user_id")
