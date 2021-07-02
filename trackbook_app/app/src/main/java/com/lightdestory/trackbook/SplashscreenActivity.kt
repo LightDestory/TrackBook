@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.util.Pair
 import android.view.View
 import android.view.animation.AnimationUtils
@@ -24,8 +25,8 @@ class SplashscreenActivity : AppCompatActivity() {
 
     private fun checkLogin() {
         lateinit var goForward: Intent
-        val pref: SharedPreferences = getPreferences(MODE_PRIVATE)
-        if (pref.contains(getString(R.string.pref_login))) {
+        val pref: SharedPreferences = getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE)
+        if (pref.contains(getString(R.string.pref_User))) {
             goForward = Intent(this, DashboardActivity::class.java)
             startActivity(goForward)
         } else {

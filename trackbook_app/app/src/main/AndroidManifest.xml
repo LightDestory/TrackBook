@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.lightdestory.trackbook">
+    package="com.lightdestory.trackbook" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -11,16 +11,27 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.TrackBook">
-        <activity android:name=".RegisterActivity"></activity>
-        <activity android:name=".DashboardActivity" />
-        <activity android:name=".LoginActivity" />
+        android:theme="@style/Theme.TrackBook" >
+        <activity android:name=".ResetPasswordActivity" >
+        </activity>
         <activity
-            android:name=".SplashscreenActivity"
-            android:noHistory="true"
+            android:name=".RegisterActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:parentActivityName=".LoginActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity android:name=".DashboardActivity" />
+        <activity
+            android:name=".LoginActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity">
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".SplashscreenActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:noHistory="true"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

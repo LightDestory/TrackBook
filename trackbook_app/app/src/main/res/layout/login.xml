@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/gradient_gold_to_onprimary">
+    android:background="@drawable/gradient_gold_to_onprimary"
+    tools:context=".LoginActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="fill_parent"
@@ -25,7 +28,7 @@
             android:id="@+id/loginTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/login_Welcome"
+            android:text="@string/login_Title"
             android:textAlignment="center"
             android:textColor="@color/primary_text"
             android:textSize="24sp"
@@ -41,7 +44,7 @@
             android:id="@+id/loginSubtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/login_LoginRequest"
+            android:text="@string/login_Subtitle"
             android:textAlignment="center"
             android:textColor="@color/secondary_text"
             android:textSize="18sp"
@@ -78,12 +81,16 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:transitionName="@string/transition_Email">
+                    android:transitionName="@string/transition_Email"
+                    app:endIconMode="clear_text"
+                    app:errorEnabled="true"
+                    app:startIconDrawable="@drawable/icon_email">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/form_Email" />
+                        android:hint="@string/form_Email"
+                        android:inputType="textEmailAddress" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -91,14 +98,28 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:transitionName="@string/transition_Password">
+                    android:transitionName="@string/transition_Password"
+                    app:endIconMode="password_toggle"
+                    app:errorEnabled="true"
+                    app:helperText="@string/register_PasswordHint"
+                    app:helperTextEnabled="true"
+                    app:startIconDrawable="@drawable/icon_password">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/form_Password" />
+                        android:hint="@string/form_Password"
+                        android:inputType="textPassword" />
                 </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/loginForgotPass"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/login_ForgotPass"
+                    android:textColor="@color/secondary_text" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/loginAccess"
@@ -116,7 +137,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="5dp"
-                    android:text="@string/login_RegisterUser"
+                    android:text="@string/login_GoToRegister"
                     android:textColor="@color/secondary_text"
                     android:transitionName="@string/transition_FormAlt" />
             </LinearLayout>

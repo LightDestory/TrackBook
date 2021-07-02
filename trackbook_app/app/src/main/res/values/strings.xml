@@ -13,36 +13,45 @@
     <string name="transition_Title">transition_Title</string>
 
     <!-- preferences names-->
-    <string name="pref_login">pref_login</string>
+    <string name="pref_User">user</string>
 
     <!-- Generic texts -->
     <string name="form_Email">Email</string>
     <string name="form_Password">Password</string>
+    <string name="dialog_OK">OK</string>
+    <string name="credentials_Error">Invalid Credentials</string>
+    <string name="placeholder_Text">placeholder</string>
 
     <!-- Login texts -->
-    <string name="login_LoginRequest">Already a member? Log-in to continue!</string>
-    <string name="login_Welcome">Hello, newcomer!</string>
+    <string name="login_Subtitle">Already a member? Log-in to continue!</string>
+    <string name="login_Title">Hello, newcomer!</string>
     <string name="login_Button">Log-in!</string>
-    <string name="login_RegisterUser">New User? Register Now!</string>
+    <string name="login_GoToRegister">New User? Register Now!</string>
+    <string name="login_ForgotPass">Forgot password?</string>
 
     <!-- Register texts -->
-    <string name="register_DataRequest">The following data is required!</string>
-    <string name="register_Welcome">Join our community!</string>
-    <string name="register_penname">Pen Name</string>
+    <string name="register_Subtitle">The following data is required!</string>
+    <string name="register_Title">Join our community!</string>
+    <string name="register_PenName">Pen Name</string>
     <string name="register_Button">Join us!</string>
-    <string name="register_LoginExistingUser">Already a member? Log-in!</string>
+    <string name="register_GoToLogin">Already a member? Log-in!</string>
     <string name="register_PasswordHint">Letters, number and special chars. Min 8 chars</string>
     <string name="register_PenNameHint">Letters and Number</string>
-    -->
+
+    <!-- ResetPassword texts -->
+    <string name="resetpwd_Subtitle">Don\'t worry, it can be changed!</string>
+    <string name="resetpwd_Title">Forgot password?</string>
+    <string name="resetpwd_Button">Change Password!</string>
+    <string name="resetpwd_GoToLogin">Do you remember? Log-in!</string>
+    <string name="reset_NewPassword">New Password</string>
 
     <!-- Dashboard texts -->
     <string name="dashboard_Name">Dashboard</string>
-    <string name="label_BookShop">Stores</string>
+    <string name="dashboard_welcome">Welcome back!\nDid you read something interesting?</string>
     <string name="label_MyBooks">My Books</string>
-    <string name="label_Random">Random Book</string>
     <string name="label_SearchBook">Add Books</string>
-    <string name="label_Settings">Settings</string>
-    <string name="label_Social">"Books' talks"</string>
+    <string name="label_Random">Random Book</string>
+    <string name="label_logOut">Log Out</string>
 
     <!-- Check data texts -->
     <string name="check_InvalidEmailDesc">The entered email does not satisfy RFC 5322!</string>
@@ -51,4 +60,24 @@
     <string name="check_InvalidPasswordTitle">Invalid Password</string>
     <string name="check_InvalidPenNameDesc">The pen name must be at max 16 character or less.Pen name must be composed by letters or number</string>
     <string name="check_InvalidPenNameTitle">Invalid Pen Name</string>
+
+    <!-- API -->
+    <string name="endpoint_error">Unable to get response from Endpoint</string>
+    <string name="endpoint_generic">https://trackbook.lightdestory.com/api</string>
+    <string name="endpoint_loading">Connecting to the cloud…</string>
+    <!-- Register API -->
+    <string name="endpoint_register">https://trackbook.lightdestory.com/api/account/register</string>
+    <string name="endpoint_register_tag">tag_RegisterAPI</string>
+    <string name="endpoint_register_title">Account Registration</string>
+
+    <!-- Reset API -->
+    <string name="endpoint_reset">https://trackbook.lightdestory.com/api/account/change</string>
+    <string name="endpoint_reset_tag">tag_ResetAPI</string>
+    <string name="endpoint_reset_title">Password Change</string>
+
+    <!-- Login API -->
+    <string name="endpoint_login">https://trackbook.lightdestory.com/api/account/login</string>
+    <string name="endpoint_login_tag">tag_LoginAPI</string>
+    <string name="endpoint_login_title">Account Log-in</string>
+
 </resources>

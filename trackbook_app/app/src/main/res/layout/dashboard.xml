@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    tools:context=".DashboardActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="fill_parent"
@@ -18,22 +21,23 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/dashboardBanner"
-            android:layout_width="212.0dip"
-            android:layout_height="158.0dip"
+            android:layout_width="220dp"
+            android:layout_height="160dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/include"
-            app:srcCompat="@drawable/art_people_books_1" />
+            app:srcCompat="@drawable/art_people_books_1"
+            android:transitionName="@string/transition_Logo"/>
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/dashboardTitle"
+            android:id="@+id/dashboardUserTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/app_name"
+            android:text="@string/placeholder_Text"
             android:textAlignment="center"
             android:textColor="@color/primary_text"
-            android:textSize="24.0sp"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/dashboardFirstRow"
             app:layout_constraintEnd_toStartOf="@id/dashboardBanner"
@@ -42,23 +46,23 @@
             app:layout_constraintVertical_bias="0.19999999" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:layout_width="150.0dip"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="@string/slogan"
+            android:text="@string/dashboard_welcome"
             android:textAlignment="center"
             android:textColor="@color/secondary_text"
             android:textStyle="italic"
             app:layout_constraintBottom_toTopOf="@id/dashboardFirstRow"
             app:layout_constraintEnd_toStartOf="@id/dashboardBanner"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/dashboardTitle" />
+            app:layout_constraintTop_toBottomOf="@id/dashboardUserTitle" />
 
         <LinearLayout
             android:id="@+id/dashboardFirstRow"
             android:layout_width="fill_parent"
-            android:layout_height="200.0dip"
+            android:layout_height="200dp"
             android:orientation="horizontal"
-            android:padding="15.0dip"
+            android:padding="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -66,15 +70,15 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/dashboardMyBooksCard"
-                android:layout_width="0.0dip"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
-                android:layout_margin="10.0dip"
+                android:layout_margin="10dp"
                 android:layout_weight="1.0"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?selectableItemBackgroundBorderless"
-                app:cardCornerRadius="10.0dip"
-                app:cardElevation="10.0dip">
+                app:cardCornerRadius="10dp"
+                app:cardElevation="10dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="fill_parent"
@@ -82,8 +86,8 @@
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/dashboardMyBooksCardIcon"
-                        android:layout_width="80.0dip"
-                        android:layout_height="80.0dip"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
                         android:scaleType="centerInside"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -99,7 +103,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/label_MyBooks"
                         android:textAlignment="center"
-                        android:textSize="18.0sp"
+                        android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -110,15 +114,15 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/dashboardSearchBookCard"
-                android:layout_width="0.0dip"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
-                android:layout_margin="10.0dip"
+                android:layout_margin="10dp"
                 android:layout_weight="1.0"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?selectableItemBackgroundBorderless"
-                app:cardCornerRadius="10.0dip"
-                app:cardElevation="10.0dip">
+                app:cardCornerRadius="10dp"
+                app:cardElevation="10dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="fill_parent"
@@ -126,8 +130,8 @@
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/dashboardSearchBookCardIcon"
-                        android:layout_width="80.0dip"
-                        android:layout_height="80.0dip"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.494"
@@ -142,7 +146,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/label_SearchBook"
                         android:textAlignment="center"
-                        android:textSize="18.0sp"
+                        android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -155,130 +159,28 @@
         <LinearLayout
             android:id="@+id/dashboardSecondRow"
             android:layout_width="fill_parent"
-            android:layout_height="200.0dip"
+            android:layout_height="200dp"
             android:orientation="horizontal"
-            android:paddingLeft="15.0dip"
-            android:paddingTop="0.0dip"
-            android:paddingRight="15.0dip"
-            android:paddingBottom="15.0dip"
+            android:paddingLeft="15dp"
+            android:paddingTop="0dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/dashboardFirstRow">
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/dashboardSocialCard"
-                android:layout_width="0.0dip"
-                android:layout_height="fill_parent"
-                android:layout_margin="10.0dip"
-                android:layout_weight="1.0"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?selectableItemBackgroundBorderless"
-                app:cardCornerRadius="10.0dip"
-                app:cardElevation="10.0dip">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
-
-                    <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/dashboardSocialCardIcon"
-                        android:layout_width="80.0dip"
-                        android:layout_height="80.0dip"
-                        android:scaleType="centerInside"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.494"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.228"
-                        app:srcCompat="@drawable/icon_social" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/dashboardSocialCardText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/label_Social"
-                        android:textAlignment="center"
-                        android:textSize="18.0sp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/dashboardSocialCardIcon" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/dashboardShopCard"
-                android:layout_width="0.0dip"
-                android:layout_height="fill_parent"
-                android:layout_margin="10.0dip"
-                android:layout_weight="1.0"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?selectableItemBackgroundBorderless"
-                app:cardCornerRadius="10.0dip"
-                app:cardElevation="10.0dip">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
-
-                    <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/dashboardShopCardIcon"
-                        android:layout_width="80.0dip"
-                        android:layout_height="80.0dip"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.494"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.228"
-                        app:srcCompat="@drawable/icon_bookshop" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/dashboardShopCardText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/label_BookShop"
-                        android:textAlignment="center"
-                        android:textSize="18.0sp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/dashboardShopCardIcon" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </com.google.android.material.card.MaterialCardView>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/dashboardThirdRow"
-            android:layout_width="fill_parent"
-            android:layout_height="200.0dip"
-            android:orientation="horizontal"
-            android:paddingLeft="15.0dip"
-            android:paddingTop="0.0dip"
-            android:paddingRight="15.0dip"
-            android:paddingBottom="15.0dip"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/dashboardSecondRow">
-
-            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/dashboardRandomCard"
-                android:layout_width="0.0dip"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
-                android:layout_margin="10.0dip"
+                android:layout_margin="10dp"
                 android:layout_weight="1.0"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?selectableItemBackgroundBorderless"
-                app:cardCornerRadius="10.0dip"
-                app:cardElevation="10.0dip">
+                app:cardCornerRadius="10dp"
+                app:cardElevation="8dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="fill_parent"
@@ -286,8 +188,8 @@
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/dashboardRandomCardIcon"
-                        android:layout_width="80.0dip"
-                        android:layout_height="80.0dip"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
                         android:scaleType="centerInside"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -303,7 +205,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/label_Random"
                         android:textAlignment="center"
-                        android:textSize="18.0sp"
+                        android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -313,45 +215,45 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/dashboardSettingsCard"
-                android:layout_width="0.0dip"
+                android:id="@+id/dashboardLogOutCard"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
-                android:layout_margin="10.0dip"
+                android:layout_margin="10dp"
                 android:layout_weight="1.0"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?selectableItemBackgroundBorderless"
-                app:cardCornerRadius="10.0dip"
-                app:cardElevation="10.0dip">
+                app:cardCornerRadius="10dp"
+                app:cardElevation="8dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent">
 
                     <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/dashboardSettingsCardIcon"
-                        android:layout_width="80.0dip"
-                        android:layout_height="80.0dip"
+                        android:id="@+id/dashboardLogOutCardIcon"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.494"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.228"
-                        app:srcCompat="@drawable/icon_settings" />
+                        app:srcCompat="@drawable/icon_logout" />
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/dashboardSettingsCardText"
+                        android:id="@+id/dashboardLogOutCardText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/label_Settings"
+                        android:text="@string/label_logOut"
                         android:textAlignment="center"
-                        android:textSize="18.0sp"
+                        android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/dashboardSettingsCardIcon" />
+                        app:layout_constraintTop_toBottomOf="@id/dashboardLogOutCardIcon" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>

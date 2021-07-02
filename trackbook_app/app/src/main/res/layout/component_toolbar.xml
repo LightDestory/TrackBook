@@ -10,6 +10,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
+        android:layout_gravity="center"
         android:elevation="4.0dip"
         android:focusable="true"
         android:minHeight="?actionBarSize">
@@ -20,6 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:paddingHorizontal="80dp"
             android:text="@string/app_name"
             android:textAlignment="center" />
     </com.google.android.material.appbar.MaterialToolbar>

@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/gradient_gold_to_onprimary">
+    android:background="@drawable/gradient_gold_to_onprimary"
+    tools:context=".RegisterActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="fill_parent"
@@ -25,10 +28,10 @@
             android:id="@+id/registerTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/register_Welcome"
+            android:text="@string/register_Title"
             android:textAlignment="center"
             android:textColor="@color/primary_text"
-            android:textSize="24dp"
+            android:textSize="24sp"
             android:textStyle="bold"
             android:transitionName="@string/transition_Title"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -41,10 +44,10 @@
             android:id="@+id/registerSubtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/register_DataRequest"
+            android:text="@string/register_Subtitle"
             android:textAlignment="center"
             android:textColor="@color/secondary_text"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:textStyle="italic"
             android:transitionName="@string/transition_Subtitle"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -78,7 +81,6 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:focusable="true"
                     android:transitionName="@string/transition_Email"
                     app:endIconMode="clear_text"
                     app:errorEnabled="true"
@@ -127,7 +129,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/register_penname"
+                        android:hint="@string/register_PenName"
                         android:inputType="textPersonName" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -147,7 +149,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="5dp"
-                    android:text="@string/register_LoginExistingUser"
+                    android:text="@string/register_GoToLogin"
                     android:textColor="@color/secondary_text"
                     android:transitionName="@string/transition_FormAlt" />
             </LinearLayout>
