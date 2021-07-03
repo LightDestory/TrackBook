@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    tools:context=".BookEditActivity">
+    tools:context=".BookAddActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="fill_parent"
@@ -13,13 +13,13 @@
         <include
             android:id="@+id/include"
             layout="@layout/component_toolbar"
-            app:layout_constraintBottom_toTopOf="@id/editBanner"
+            app:layout_constraintBottom_toTopOf="@id/addBanner"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/editBanner"
+            android:id="@+id/addBanner"
             android:layout_width="fill_parent"
             android:layout_height="180dp"
             android:layout_marginTop="15dp"
@@ -28,21 +28,21 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/include"
-            app:srcCompat="@drawable/art_books_edit" />
+            app:srcCompat="@drawable/art_books_add" />
 
         <LinearLayout
-            android:id="@+id/editColorRow"
+            android:id="@+id/addColorRow"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
+            android:padding="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/editBanner">
+            app:layout_constraintTop_toBottomOf="@id/addBanner">
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/editColorCard"
+                android:id="@+id/addColorCard"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_margin="10dp"
@@ -57,7 +57,7 @@
                     android:paddingVertical="20dp">
 
                     <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/editColorCardIcon"
+                        android:id="@+id/addColorCardIcon"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:padding="2dp"
@@ -69,13 +69,13 @@
                         app:srcCompat="@drawable/icon_book" />
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/editMenuColors"
+                        android:id="@+id/addMenuColors"
                         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:hint="@string/book_colorTitle"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/editColorCardIcon"
+                        app:layout_constraintStart_toEndOf="@+id/addColorCardIcon"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <com.google.android.material.textfield.MaterialAutoCompleteTextView
@@ -88,18 +88,18 @@
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
         <LinearLayout
-            android:id="@+id/editTitleRow"
+            android:id="@+id/addISBNRow"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
+            android:padding="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/editColorRow">
+            app:layout_constraintTop_toBottomOf="@id/addColorRow">
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/editTitleCard"
+                android:id="@+id/addISBNCard"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_margin="10dp"
@@ -115,7 +115,60 @@
                     android:paddingHorizontal="20dp">
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/editTitleInput"
+                        android:id="@+id/addISBNInput"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:transitionName="@string/transition_Email"
+                        app:endIconMode="clear_text"
+                        app:errorEnabled="true"
+                        app:helperTextEnabled="true"
+                        app:helperText="@string/add_ISBNHint"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:startIconDrawable="@drawable/icon_isbn">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/add_ISBNTitle"
+                            android:inputType="textNoSuggestions" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/addTitleRow"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/addISBNRow">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/addTitleCard"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1.0"
+                android:foreground="?selectableItemBackgroundBorderless"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="10dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:paddingVertical="10dp"
+                    android:paddingHorizontal="20dp">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/addTitleInput"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
@@ -142,20 +195,20 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/editPageReadRow"
+            android:id="@+id/addPageReadRow"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
+            android:padding="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/editTitleRow"
+            app:layout_constraintTop_toBottomOf="@id/addTitleRow"
             app:layout_constraintVertical_bias="0.0">
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/editPageReadCard"
+                android:id="@+id/addPageReadCard"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_margin="10dp"
@@ -171,7 +224,7 @@
                     android:paddingVertical="10dp">
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/editPageReadInput"
+                        android:id="@+id/addPageReadInput"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
@@ -202,14 +255,14 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/editPageReadRow"
+            app:layout_constraintTop_toBottomOf="@id/addPageReadRow"
             android:paddingHorizontal="15dp">
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/editSave"
+                android:id="@+id/addSave"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/edit_SaveButton" />
+                android:text="@string/add_SaveButton" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

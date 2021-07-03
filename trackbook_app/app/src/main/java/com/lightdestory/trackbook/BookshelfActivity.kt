@@ -1,7 +1,10 @@
 package com.lightdestory.trackbook
 
+import android.app.ActivityOptions
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Pair
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
@@ -34,7 +37,17 @@ class BookshelfActivity : AppCompatActivity() {
         list.adapter = LibraryAdapter.instance
         binding.bookshelfFloatMenu.setOnClickListener { fabToggle() }
         binding.bookshelfFloatMenuRemoveAll.setOnClickListener { miniFabDeleteAll(); fabToggle() }
+        binding.bookshelfFloatMenuAdd.setOnClickListener { goAdd(); fabToggle() }
         setContentView(binding.root)
+    }
+
+    private fun goAdd() {
+        val goForward: Intent = Intent(this, BookAddActivity::class.java)
+        val options: ActivityOptions = ActivityOptions.makeSceneTransitionAnimation(
+            this,
+            Pair<View, String>(binding.bookshelfBanner, getString(R.string.transition_Logo))
+        )
+        startActivity(goForward, options.toBundle())
     }
 
     private fun miniFabDeleteAll() {

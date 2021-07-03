@@ -94,7 +94,7 @@ class BookEditActivity : AppCompatActivity() {
                 .setIcon(R.drawable.icon_error)
                 .setNeutralButton(R.string.dialog_OK) { dialog, _ -> dialog.dismiss() }
                 .setMessage(errorMessage)
-                .setTitle(getString(R.string.edit_InvalidBookData))
+                .setTitle(getString(R.string.book_InvalidBookData))
                 .setCancelable(false)
                 .show()
             return false
@@ -118,6 +118,7 @@ class BookEditActivity : AppCompatActivity() {
                 editing.color = colorList.indexOf(colorPicker.text.toString()).toString()
                 editing.page_read = binding.editPageReadInput.editText?.text.toString().toInt()
                 LibraryAdapter.instance.notifyItemChanged(intent.extras?.getInt("book_position")!!)
+                Library.instance.saveLibrary(this)
                 onBackPressed()
             }.show()
     }

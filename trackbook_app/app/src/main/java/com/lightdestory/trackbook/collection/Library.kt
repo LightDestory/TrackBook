@@ -36,7 +36,7 @@ class Library private constructor() {
         return gson.toJson(books)
     }
 
-    private fun saveLibrary(context: Context) {
+    fun saveLibrary(context: Context) {
         val pref: SharedPreferences = SharedPreferencesSingleton.getInstance(context).preferences
         with(pref.edit()) {
             putString(context.getString(R.string.pref_Library), jsonLibrary())

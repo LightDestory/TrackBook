@@ -36,6 +36,7 @@ class DashboardActivity : AppCompatActivity() {
         binding.dashboardAboutCard.setOnClickListener { navigate("about") }
         binding.dashboardCloudCard.setOnClickListener { navigate("cloud") }
         binding.dashboardMyBooksCard.setOnClickListener { navigate("bookshelf") }
+        binding.dashboardSearchBookCard.setOnClickListener { navigate("addBook") }
     }
 
     private fun navigate(destination: String) {
@@ -44,6 +45,7 @@ class DashboardActivity : AppCompatActivity() {
             "login" -> Intent(this, LoginActivity::class.java)
             "cloud" -> Intent(this, CloudActivity::class.java)
             "bookshelf" -> Intent(this, BookshelfActivity::class.java)
+            "addBook" -> Intent(this, BookAddActivity::class.java)
             else -> null
         }
         val transitions = ArrayList<Pair<View, String>>()
