@@ -108,7 +108,7 @@ class ResetPasswordActivity : AppCompatActivity() {
                     .show()
             }, { error ->
                 progress.dismiss()
-                if (error?.networkResponse != null) {
+                if (error?.networkResponse != null  && error.networkResponse.data.decodeToString().isNotEmpty()) {
                     val err = JSONObject(error.networkResponse.data.decodeToString())
                     dialog.setIcon(R.drawable.icon_warning)
                         .setMessage(err.getString("result"))
