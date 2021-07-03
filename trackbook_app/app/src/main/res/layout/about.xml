@@ -47,7 +47,6 @@
             android:layout_height="wrap_content"
             android:text="@string/slogan"
             android:textAlignment="center"
-            android:textColor="@color/secondary_text"
             android:textStyle="italic"
             android:textSize="18sp"
             android:paddingHorizontal="10dp"

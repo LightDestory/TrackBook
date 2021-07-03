@@ -116,8 +116,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:layout_marginTop="5dp"
-                    android:text="@string/login_ForgotPass"
-                    android:textColor="@color/secondary_text" />
+                    android:text="@string/login_ForgotPass" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/loginAccess"
@@ -136,7 +135,6 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="5dp"
                     android:text="@string/login_GoToRegister"
-                    android:textColor="@color/secondary_text"
                     android:transitionName="@string/transition_FormAlt" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>

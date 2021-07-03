@@ -35,7 +35,6 @@
             android:layout_height="wrap_content"
             android:text="@string/cloud_notice"
             android:textAlignment="center"
-            android:textColor="@color/secondary_text"
             android:textStyle="italic"
             android:textSize="16sp"
             android:paddingHorizontal="10dp"
