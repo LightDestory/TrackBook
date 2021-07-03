@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.lightdestory.trackbook.databinding.RegisterBinding
 import com.lightdestory.trackbook.databinding.ResetPasswordBinding
 import com.lightdestory.trackbook.network.APIBuddy
@@ -64,11 +65,12 @@ class ResetPasswordActivity : AppCompatActivity() {
             errorMessage += "\n - ${getString(R.string.check_InvalidPenNameDesc)}\n"
         }
         if (!emailMatch || !passwordMatch || !penNameMatch) {
-            AlertDialog.Builder(this)
+            MaterialAlertDialogBuilder(this)
                 .setIcon(R.drawable.icon_error)
                 .setNeutralButton(R.string.dialog_OK) { dialog, _ -> dialog.dismiss() }
                 .setMessage(errorMessage)
                 .setTitle(getString(R.string.credentials_Error))
+                .setCancelable(false)
                 .show()
             return false
         }
@@ -82,8 +84,9 @@ class ResetPasswordActivity : AppCompatActivity() {
         val progress = ProgressDialog(this)
         progress.setMessage(getString(R.string.endpoint_loading))
         progress.show()
-        val dialog = AlertDialog.Builder(this)
+        val dialog = MaterialAlertDialogBuilder(this)
             .setTitle(R.string.endpoint_reset_title)
+            .setCancelable(false)
         val params = JSONObject()
             .put("email", binding.resetEmailInput.editText?.text.toString())
             .put(
@@ -103,20 +106,19 @@ class ResetPasswordActivity : AppCompatActivity() {
                         this.onBackPressed()
                     }
                     .show()
-            }
-        ) { error ->
-            progress.dismiss()
-            if (error?.networkResponse != null) {
-                val err = JSONObject(error.networkResponse.data.decodeToString())
-                dialog.setIcon(R.drawable.icon_warning)
-                    .setMessage(err.getString("result"))
-            } else {
-                dialog.setIcon(R.drawable.icon_error)
-                    .setMessage(getString(R.string.endpoint_error))
-            }
-            dialog.setNeutralButton(R.string.dialog_OK) { dialog, _ -> dialog.dismiss() }
-            dialog.show()
-        }
+            }, { error ->
+                progress.dismiss()
+                if (error?.networkResponse != null) {
+                    val err = JSONObject(error.networkResponse.data.decodeToString())
+                    dialog.setIcon(R.drawable.icon_warning)
+                        .setMessage(err.getString("result"))
+                } else {
+                    dialog.setIcon(R.drawable.icon_error)
+                        .setMessage(getString(R.string.endpoint_error))
+                }
+                dialog.setNeutralButton(R.string.dialog_OK) { dialog, _ -> dialog.dismiss() }
+                dialog.show()
+            })
         req.tag = getString(R.string.endpoint_reset_tag)
         APIBuddy.getInstance(this).addRequest(req)
     }

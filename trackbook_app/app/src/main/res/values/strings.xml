@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE resources [<!ENTITY endpoint "https://trackbook.lightdestory.com/api">]>
 <resources>
     <string name="app_name">TrackBook</string>
     <string name="slogan">Track your readings and meet new pen-friends!</string>
@@ -11,14 +12,18 @@
     <string name="transition_Password">transition_Password</string>
     <string name="transition_Subtitle">transition_Subtitle</string>
     <string name="transition_Title">transition_Title</string>
+    <string name="transition_AppBar">transition_AppBar</string>
 
     <!-- preferences names-->
     <string name="pref_User">user</string>
+    <string name="pref_Library">library</string>
 
     <!-- Generic texts -->
     <string name="form_Email">Email</string>
     <string name="form_Password">Password</string>
     <string name="dialog_OK">OK</string>
+    <string name="dialog_No">No</string>
+    <string name="dialog_Yes">Yes</string>
     <string name="credentials_Error">Invalid Credentials</string>
     <string name="placeholder_Text">placeholder</string>
 
@@ -50,8 +55,31 @@
     <string name="dashboard_welcome">Welcome back!\nDid you read something interesting?</string>
     <string name="label_MyBooks">My Books</string>
     <string name="label_SearchBook">Add Books</string>
-    <string name="label_Random">Random Book</string>
-    <string name="label_logOut">Log Out</string>
+    <string name="label_Cloud">Backup &amp; Restore</string>
+    <string name="label_About">About</string>
+    <string name="label_LogOut">Log Out</string>
+
+    <!-- About Texts -->
+    <string name="about_application">About Application</string>
+    <string name="about_dev"> <b>Developed by:</b> <i>Alessio Tudisco (LightDestory)</i></string>
+    <string name="about_ide"> <b>Developed on:</b> <i>Android Studio</i></string>
+    <string name="about_languages"> <b>Developed with:</b> <i>Kotlin</i> and <i>SW Engineering knowledge</i></string>
+    <string name="about_builtApp"> <b>Running with:</b> <i>Material Design</i>, <i>Volley library</i>, <i>GSON library</i></string>
+    <string name="about_backend">About Server</string>
+    <string name="about_backendEndpoint"> <b>Current Endpoint:</b>\n<i>&endpoint;</i></string>
+    <string name="about_backendLanguages"> <b>Developed with:</b> Web Programming\'s knowledge</string>
+    <string name="about_builtBackEnd"> <b>Running with:</b> <i>NodeJS</i> and <i>TypeScript</i>, <i>Express Framework</i>, <i>Knex library</i>, <i>PostgreSQL DBMS</i></string>
+
+    <!-- Cloud Texts -->
+    <string name="cloud_notice">Backup and restore your tracking data with one click!\n<b>Read the warnings before perform any action!</b></string>
+    <string name="cloud_restore_title">Restore your data from cloud</string>
+    <string name="cloud_backup_title">Save your data to cloud</string>
+    <string name="cloud_restore_desc">Your local tracking data will be overwritten by the cloud\'s one!</string>
+    <string name="cloud_backup_desc">Your cloud tracking data will be overwritten by the local\'s one!</string>
+
+    <!-- LogOut -->
+    <string name="logOut_Title">Logging out</string>
+    <string name="logOut_Desc">Are you sure about it?\nBe careful to back up your data before logging out, if you log out every data will be wiped.\nDo you want to continue?</string>
 
     <!-- Check data texts -->
     <string name="check_InvalidEmailDesc">The entered email does not satisfy RFC 5322!</string>
@@ -63,7 +91,7 @@
 
     <!-- API -->
     <string name="endpoint_error">Unable to get response from Endpoint</string>
-    <string name="endpoint_generic">https://trackbook.lightdestory.com/api</string>
+    <string name="endpoint_generic">&endpoint;</string>
     <string name="endpoint_loading">Connecting to the cloud…</string>
     <!-- Register API -->
     <string name="endpoint_register">https://trackbook.lightdestory.com/api/account/register</string>
@@ -79,5 +107,10 @@
     <string name="endpoint_login">https://trackbook.lightdestory.com/api/account/login</string>
     <string name="endpoint_login_tag">tag_LoginAPI</string>
     <string name="endpoint_login_title">Account Log-in</string>
+
+    <!-- BackUp API -->
+    <string name="endpoint_backup">https://trackbook.lightdestory.com/api/user</string>
+    <string name="endpoint_backup_tag">tag_BackUpAPI</string>
+    <string name="endpoint_backup_title">Data BackUp</string>
 
 </resources>

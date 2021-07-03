@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
@@ -23,12 +22,12 @@
             android:id="@+id/dashboardBanner"
             android:layout_width="220dp"
             android:layout_height="160dp"
+            android:transitionName="@string/transition_Logo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/include"
-            app:srcCompat="@drawable/art_people_books_1"
-            android:transitionName="@string/transition_Logo"/>
+            app:srcCompat="@drawable/art_people_books_1" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/dashboardUserTitle"
@@ -91,10 +90,10 @@
                         android:scaleType="centerInside"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.494"
+                        app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.228"
+                        app:layout_constraintVertical_bias="0.2"
                         app:srcCompat="@drawable/icon_mybooks" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -134,10 +133,10 @@
                         android:layout_height="80dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.494"
+                        app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.228"
+                        app:layout_constraintVertical_bias="0.2"
                         app:srcCompat="@drawable/icon_findbook" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -171,7 +170,7 @@
             app:layout_constraintTop_toBottomOf="@id/dashboardFirstRow">
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/dashboardRandomCard"
+                android:id="@+id/dashboardCloudCard"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_margin="10dp"
@@ -187,30 +186,30 @@
                     android:layout_height="fill_parent">
 
                     <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/dashboardRandomCardIcon"
+                        android:id="@+id/dashboardCloudCardIcon"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:scaleType="centerInside"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.494"
+                        app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.228"
-                        app:srcCompat="@drawable/icon_random" />
+                        app:layout_constraintVertical_bias="0.2"
+                        app:srcCompat="@drawable/icon_cloud" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/dashboardRandomCardText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/label_Random"
+                        android:text="@string/label_Cloud"
                         android:textAlignment="center"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/dashboardRandomCardIcon" />
+                        app:layout_constraintTop_toBottomOf="@id/dashboardCloudCardIcon" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -236,17 +235,17 @@
                         android:layout_height="80dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.494"
+                        app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.228"
+                        app:layout_constraintVertical_bias="0.2"
                         app:srcCompat="@drawable/icon_logout" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/dashboardLogOutCardText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/label_logOut"
+                        android:text="@string/label_LogOut"
                         android:textAlignment="center"
                         android:textSize="18sp"
                         android:textStyle="bold"
@@ -256,6 +255,73 @@
                         app:layout_constraintTop_toBottomOf="@id/dashboardLogOutCardIcon" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/dashboardThirdRow"
+            android:layout_width="fill_parent"
+            android:layout_height="200dp"
+            android:orientation="horizontal"
+            android:paddingLeft="15dp"
+            android:paddingTop="0dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dashboardSecondRow">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/dashboardAboutCard"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1.0"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?selectableItemBackgroundBorderless"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="8dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/dashboardAboutCardIcon"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:scaleType="centerInside"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.2"
+                        app:srcCompat="@drawable/icon_about" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/dashboardAboutCardText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_About"
+                        android:textAlignment="center"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/dashboardAboutCardIcon" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1.0"
+                android:visibility="invisible" />
+
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

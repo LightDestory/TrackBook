@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context=".AboutActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <include
+            android:id="@+id/include"
+            layout="@layout/component_toolbar"
+            app:layout_constraintBottom_toTopOf="@id/aboutBanner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/aboutBanner"
+            android:layout_width="fill_parent"
+            android:layout_height="180dp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/include"
+            app:srcCompat="@drawable/art_about" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/aboutAppName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/app_name"
+            android:textAlignment="center"
+            android:textColor="@color/primary_text"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/aboutBanner" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/aboutSlogan"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/slogan"
+            android:textAlignment="center"
+            android:textColor="@color/secondary_text"
+            android:textStyle="italic"
+            android:textSize="18sp"
+            android:paddingHorizontal="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/aboutAppName" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/aboutDev"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/about_dev"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/aboutSlogan"
+            android:textAlignment="center" />
+        <LinearLayout
+            android:id="@+id/aboutAppRow"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/aboutDev">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/aboutAppCard"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1.0"
+                android:foreground="?selectableItemBackgroundBorderless"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="10dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/aboutAppCardIcon"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:scaleType="centerInside"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.1"
+                        app:srcCompat="@drawable/icon_application" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/aboutAppCardText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/about_application"
+                        android:textAlignment="center"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/aboutAppCardIcon" />
+
+                    <LinearLayout
+                        android:id="@+id/aboutAppSubInfo"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="15dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/aboutAppCardText">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/aboutAppSubInfoIDE"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0"
+                            android:padding="5dp"
+                            android:text="@string/about_ide"
+                            app:drawableStartCompat="@drawable/icon_dev" />
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/aboutAppSubInfoLanguages"
+                            android:layout_width="fill_parent"
+                            android:layout_weight="0"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:text="@string/about_languages"
+                            app:drawableStartCompat="@drawable/icon_dev2" />
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/aboutAppSubInfoUsing"
+                            android:layout_width="fill_parent"
+                            android:layout_weight="0"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:text="@string/about_builtApp"
+                            app:drawableStartCompat="@drawable/icon_dev3" />
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/aboutBackEndRow"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/aboutAppRow">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/aboutBackEndCard"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1.0"
+                android:foreground="?selectableItemBackgroundBorderless"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="10dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/aboutBackEndCardIcon"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:scaleType="centerInside"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.1"
+                        app:srcCompat="@drawable/icon_backend" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/aboutBackEndCardText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/about_backend"
+                        android:textAlignment="center"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/aboutBackEndCardIcon" />
+
+                    <LinearLayout
+                        android:id="@+id/aboutBackEndSubInfo"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="15dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/aboutBackEndCardText">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/aboutBackEndSubInfoEndpoint"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0"
+                            android:padding="5dp"
+                            android:text="@string/about_backendEndpoint"
+                            app:drawableStartCompat="@drawable/icon_backend_endpoint" />
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/aboutBackEndSubInfoLanguages"
+                            android:layout_width="fill_parent"
+                            android:layout_weight="0"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:text="@string/about_backendLanguages"
+                            app:drawableStartCompat="@drawable/icon_dev2" />
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/aboutBackEndSubInfoUsing"
+                            android:layout_width="fill_parent"
+                            android:layout_weight="0"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:text="@string/about_builtBackEnd"
+                            app:drawableStartCompat="@drawable/icon_dev3" />
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

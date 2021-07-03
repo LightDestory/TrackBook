@@ -3,7 +3,7 @@ package com.lightdestory.trackbook.utils
 import java.math.BigInteger
 import java.security.MessageDigest
 
-class DataChecker private constructor(){
+class DataChecker private constructor() {
 
     private val patterns = arrayListOf<String>(
         android.util.Patterns.EMAIL_ADDRESS.pattern(),
@@ -17,14 +17,14 @@ class DataChecker private constructor(){
         const val DATA_TYPE_PEN_NAME = 2
         private var instance: DataChecker? = null
         fun getInstance(): DataChecker {
-            if(instance == null)
+            if (instance == null)
                 instance = DataChecker()
             return instance!!
         }
 
     }
 
-    fun md5(input:String): String {
+    fun md5(input: String): String {
         val md = MessageDigest.getInstance("MD5")
         return BigInteger(1, md.digest(input.toByteArray())).toString(16).padStart(32, '0')
     }

@@ -13,7 +13,7 @@ class APIBuddy private constructor(context: Context) {
         private var instance: APIBuddy? = null
 
         fun getInstance(context: Context): APIBuddy {
-            if(instance == null)
+            if (instance == null)
                 instance = APIBuddy(context.applicationContext)
             return instance!!
         }
@@ -23,7 +23,7 @@ class APIBuddy private constructor(context: Context) {
         networkQueue.add(request)
     }
 
-    fun stopPending(tag: String){
+    fun stopPending(tag: String) {
         networkQueue.cancelAll(tag)
     }
 }

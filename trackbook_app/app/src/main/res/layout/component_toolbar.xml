@@ -9,20 +9,20 @@
         android:id="@+id/toolbar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:clickable="true"
         android:layout_gravity="center"
+        android:clickable="true"
         android:elevation="4.0dip"
         android:focusable="true"
         android:minHeight="?actionBarSize">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/toolbarTitle"
             style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:paddingHorizontal="80dp"
-            android:text="@string/app_name"
+            android:text="@string/placeholder_Text"
             android:textAlignment="center" />
     </com.google.android.material.appbar.MaterialToolbar>
 </com.google.android.material.appbar.AppBarLayout>

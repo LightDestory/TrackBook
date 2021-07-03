@@ -25,13 +25,17 @@ class SplashscreenActivity : AppCompatActivity() {
 
     private fun checkLogin() {
         lateinit var goForward: Intent
-        val pref: SharedPreferences = getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE)
+        val pref: SharedPreferences =
+            getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE)
         if (pref.contains(getString(R.string.pref_User))) {
             goForward = Intent(this, DashboardActivity::class.java)
             startActivity(goForward)
         } else {
             goForward = Intent(this, LoginActivity::class.java)
-            val options: ActivityOptions = ActivityOptions.makeSceneTransitionAnimation(this, Pair<View, String>(binding.splashImage, getString(R.string.transition_Logo)))
+            val options: ActivityOptions = ActivityOptions.makeSceneTransitionAnimation(
+                this,
+                Pair<View, String>(binding.splashImage, getString(R.string.transition_Logo))
+            )
             startActivity(goForward, options.toBundle())
         }
     }
