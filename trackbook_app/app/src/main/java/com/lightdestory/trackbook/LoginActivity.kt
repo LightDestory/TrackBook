@@ -8,16 +8,13 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Pair
 import android.view.View
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.gson.Gson
 import com.lightdestory.trackbook.databinding.LoginBinding
-import com.lightdestory.trackbook.models.User
 import com.lightdestory.trackbook.network.APIBuddy
 import com.lightdestory.trackbook.utils.DataChecker
+import com.lightdestory.trackbook.utils.SharedPreferencesSingleton
 import org.json.JSONObject
 
 class LoginActivity : AppCompatActivity() {
@@ -94,7 +91,7 @@ class LoginActivity : AppCompatActivity() {
             Request.Method.POST, getString(R.string.endpoint_login), params,
             { response ->
                 val user: String = response.getString("result")
-                val pref = getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE)
+                val pref = SharedPreferencesSingleton.getInstance(this).preferences
                 with(pref.edit()) {
                     putString(getString(R.string.pref_User), user)
                     commit()
@@ -104,7 +101,9 @@ class LoginActivity : AppCompatActivity() {
             },
             { error ->
                 progress.dismiss()
-                if (error?.networkResponse != null  && error.networkResponse.data.decodeToString().isNotEmpty()) {
+                if (error?.networkResponse != null && error.networkResponse.data.decodeToString()
+                        .isNotEmpty()
+                ) {
                     val err = JSONObject(error.networkResponse.data.decodeToString())
                     dialog.setIcon(R.drawable.icon_warning)
                         .setMessage(err.getString("result"))
@@ -135,6 +134,8 @@ class LoginActivity : AppCompatActivity() {
         val options: ActivityOptions =
             ActivityOptions.makeSceneTransitionAnimation(this, *transitions.toTypedArray())
         startActivity(form, options.toBundle())
+        binding.loginEmailInput.editText?.text = null
+        binding.loginPasswordInput.editText?.text = null
     }
 
     private fun goDashboard() {

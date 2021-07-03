@@ -6,11 +6,11 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.util.Pair
 import android.view.View
 import android.view.animation.AnimationUtils
 import com.lightdestory.trackbook.databinding.SplashscreenBinding
+import com.lightdestory.trackbook.utils.SharedPreferencesSingleton
 
 class SplashscreenActivity : AppCompatActivity() {
 
@@ -25,8 +25,7 @@ class SplashscreenActivity : AppCompatActivity() {
 
     private fun checkLogin() {
         lateinit var goForward: Intent
-        val pref: SharedPreferences =
-            getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE)
+        val pref: SharedPreferences = SharedPreferencesSingleton.getInstance(this).preferences
         if (pref.contains(getString(R.string.pref_User))) {
             goForward = Intent(this, DashboardActivity::class.java)
             startActivity(goForward)

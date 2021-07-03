@@ -3,11 +3,9 @@ package com.lightdestory.trackbook
 import android.app.ProgressDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.app.AlertDialog
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.lightdestory.trackbook.databinding.RegisterBinding
 import com.lightdestory.trackbook.databinding.ResetPasswordBinding
 import com.lightdestory.trackbook.network.APIBuddy
 import com.lightdestory.trackbook.utils.DataChecker
@@ -108,7 +106,9 @@ class ResetPasswordActivity : AppCompatActivity() {
                     .show()
             }, { error ->
                 progress.dismiss()
-                if (error?.networkResponse != null  && error.networkResponse.data.decodeToString().isNotEmpty()) {
+                if (error?.networkResponse != null && error.networkResponse.data.decodeToString()
+                        .isNotEmpty()
+                ) {
                     val err = JSONObject(error.networkResponse.data.decodeToString())
                     dialog.setIcon(R.drawable.icon_warning)
                         .setMessage(err.getString("result"))

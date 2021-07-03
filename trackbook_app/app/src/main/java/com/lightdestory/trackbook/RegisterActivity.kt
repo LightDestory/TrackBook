@@ -3,7 +3,6 @@ package com.lightdestory.trackbook
 import android.app.ProgressDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.app.AlertDialog
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -108,7 +107,9 @@ class RegisterActivity : AppCompatActivity() {
                         .show()
                 }, { error ->
                     progress.dismiss()
-                    if (error?.networkResponse != null  && error.networkResponse.data.decodeToString().isNotEmpty()) {
+                    if (error?.networkResponse != null && error.networkResponse.data.decodeToString()
+                            .isNotEmpty()
+                    ) {
                         val err = JSONObject(error.networkResponse.data.decodeToString())
                         dialog.setIcon(R.drawable.icon_warning)
                             .setMessage(err.getString("result"))

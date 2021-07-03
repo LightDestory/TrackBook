@@ -8,14 +8,11 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Pair
 import android.view.View
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.gson.Gson
-import com.lightdestory.trackbook.collection.Library
 import com.lightdestory.trackbook.databinding.DashboardBinding
-import com.lightdestory.trackbook.models.BookReading
 import com.lightdestory.trackbook.models.User
+import com.lightdestory.trackbook.utils.SharedPreferencesSingleton
 
 class DashboardActivity : AppCompatActivity() {
 
@@ -27,10 +24,10 @@ class DashboardActivity : AppCompatActivity() {
         binding.include.toolbarTitle.text = getString(R.string.dashboard_Name)
         val gson: Gson = Gson()
         user = gson.fromJson(
-            getSharedPreferences(
-                getString(R.string.app_name),
-                MODE_PRIVATE
-            ).getString(getString(R.string.pref_User), ""), User::class.java
+            SharedPreferencesSingleton.getInstance(this).preferences.getString(
+                getString(R.string.pref_User),
+                ""
+            ), User::class.java
         )
         User.setUser(user)
         binding.dashboardUserTitle.text = User.instance.penName
@@ -41,7 +38,7 @@ class DashboardActivity : AppCompatActivity() {
         binding.dashboardMyBooksCard.setOnClickListener { test() }
     }
 
-    private fun test(){
+    private fun test() {
     }
 
     private fun navigate(destination: String) {
@@ -73,7 +70,7 @@ class DashboardActivity : AppCompatActivity() {
             .setNegativeButton(R.string.dialog_No) { dialog, _ -> dialog.dismiss() }
             .setPositiveButton(R.string.dialog_Yes) { dialog, _ ->
                 val pref: SharedPreferences =
-                    getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE)
+                    SharedPreferencesSingleton.getInstance(this).preferences
                 with(pref.edit()) {
                     remove(getString(R.string.pref_User))
                     remove(getString(R.string.pref_Library))

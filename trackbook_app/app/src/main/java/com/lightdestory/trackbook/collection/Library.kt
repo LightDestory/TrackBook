@@ -1,28 +1,27 @@
 package com.lightdestory.trackbook.collection
 
-import android.util.Log
-import android.widget.Toast
+import android.content.SharedPreferences
+import android.content.Context
 import com.google.gson.Gson
+import com.lightdestory.trackbook.R
 import com.lightdestory.trackbook.models.BookReading
+import com.lightdestory.trackbook.utils.SharedPreferencesSingleton
 
-class Library {
+class Library private constructor() {
 
-    private constructor() {
-        testData()
-    }
+    private val books: ArrayList<BookReading> = ArrayList()
 
-    val books: ArrayList<BookReading> = ArrayList()
-
-    companion object{
+    companion object {
         val instance: Library by lazy { Library() }
     }
 
-    fun loadBooks(newBooks: List<BookReading>) {
+    fun loadBooks(context: Context, newBooks: List<BookReading>) {
         books.clear()
         books.addAll(newBooks)
+        saveLibrary(context)
     }
 
-    fun deleteBook(index: Int){
+    fun deleteBook(index: Int) {
         books.removeAt(index)
     }
 
@@ -34,5 +33,17 @@ class Library {
     fun jsonLibrary(): String {
         val gson: Gson = Gson()
         return gson.toJson(books)
+    }
+
+    init {
+        testData()
+    }
+
+    private fun saveLibrary(context: Context) {
+        val pref: SharedPreferences = SharedPreferencesSingleton.getInstance(context).preferences
+        with(pref.edit()) {
+            putString(context.getString(R.string.pref_Library), jsonLibrary())
+            commit()
+        }
     }
 }
