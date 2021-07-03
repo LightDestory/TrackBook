@@ -1,5 +1,7 @@
 package com.lightdestory.trackbook.collection
 
+import android.util.Log
+import android.widget.Toast
 import com.google.gson.Gson
 import com.lightdestory.trackbook.models.BookReading
 
@@ -15,7 +17,7 @@ class Library {
         val instance: Library by lazy { Library() }
     }
 
-    fun loadBooks(newBooks: ArrayList<BookReading>){
+    fun loadBooks(newBooks: List<BookReading>) {
         books.clear()
         books.addAll(newBooks)
     }
@@ -24,7 +26,7 @@ class Library {
         books.removeAt(index)
     }
 
-    fun testData() {
+    private fun testData() {
         books.add(BookReading("1234567890123", "Test1", "2021-07-03", 32, "1"))
         books.add(BookReading("1234567890124", "Test1", "2021-07-02", 21, "2"))
     }

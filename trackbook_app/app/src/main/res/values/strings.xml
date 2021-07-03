@@ -108,9 +108,12 @@
     <string name="endpoint_login_tag">tag_LoginAPI</string>
     <string name="endpoint_login_title">Account Log-in</string>
 
-    <!-- BackUp API -->
-    <string name="endpoint_backup">https://trackbook.lightdestory.com/api/user</string>
+    <!-- BackUp & RestoreAPI -->
+    <string name="endpoint_backup_restore">https://trackbook.lightdestory.com/api/user</string>
     <string name="endpoint_backup_tag">tag_BackUpAPI</string>
     <string name="endpoint_backup_title">Data BackUp</string>
+    <string name="endpoint_restore_tag">tag_RestoreAPI</string>
+    <string name="endpoint_restore_title">Data Restore</string>
+    <string name="endpoint_restore_success">Data has been restored successfully!</string>
 
 </resources>
