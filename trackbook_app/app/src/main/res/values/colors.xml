@@ -7,8 +7,6 @@
     <color name="gold_complementaryAccent">#ff07c1ff</color>
     <color name="gold_dark">#ffffa000</color>
     <color name="gold_light">#ffffecb3</color>
-    <color name="primary_text">#ff212121</color>
     <color name="text_shadow">#7f000000</color>
-    <color name="secondary_text">#ff757575</color>
     <color name="red">#AA0000</color>
 </resources>
