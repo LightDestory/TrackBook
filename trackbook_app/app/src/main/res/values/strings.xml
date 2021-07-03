@@ -60,27 +60,27 @@
     <string name="label_LogOut">Log Out</string>
 
     <!-- Edit texts -->
-    <string name="label_EditBook">Update track</string>
+    <string name="label_EditBook">Track Updating</string>
     <string name="edit_colorHint">Selected Color</string>
     <string name="edit_titleHint">New book\'s title</string>
     <string name="edit_titleHintHelper">It can contain letters, numbers special chars [\'-_,.]</string>
-    <string name="edit_pageHint">How many page did you read?</string>
-    <string name="edit_pageHintShake">You can shake the phone to increase the number!</string>
+    <string name="edit_pageHint">How many page did you read until now?</string>
+    <string name="edit_pageHintShake">You can also shake the phone to increase the number!</string>
     <string name="edit_SaveButton">Save</string>
     <string name="edit_InvalidBookData">Invalid Book Data</string>
-    <string name="edit_overwriteBookTitle">Book data overwrite</string>
+    <string name="edit_overwriteBookTitle">Overwrite Tracking Data</string>
     <string name="edit_overwriteBookDesc">Do you want to apply the changes?</string>
 
     <!-- About Texts -->
     <string name="about_application">About Application</string>
     <string name="about_dev"> <b>Developed by:</b> <i>Alessio Tudisco (LightDestory)</i></string>
     <string name="about_ide"> <b>Developed on:</b> <i>Android Studio</i></string>
-    <string name="about_languages"> <b>Developed with:</b> <i>Kotlin</i> and <i>SW Engineering knowledge</i></string>
-    <string name="about_builtApp"> <b>Running with:</b> <i>Material Design</i>, <i>Volley library</i>, <i>GSON library</i></string>
+    <string name="about_languages"> <b>Developed with:</b> <i>Kotlin</i> and <i>SW Engineering's course knowledge</i></string>
+    <string name="about_builtApp"> <b>Running with:</b> <i>Material Design</i>, <i>Volley library</i> and <i>GSON library</i></string>
     <string name="about_backend">About Server</string>
     <string name="about_backendEndpoint"> <b>Current Endpoint:</b>\n<i>&endpoint;</i></string>
-    <string name="about_backendLanguages"> <b>Developed with:</b> Web Programming\'s knowledge</string>
-    <string name="about_builtBackEnd"> <b>Running with:</b> <i>NodeJS</i> and <i>TypeScript</i>, <i>Express Framework</i>, <i>Knex library</i>, <i>PostgreSQL DBMS</i></string>
+    <string name="about_backendLanguages"> <b>Developed with:</b> Web Programming\'s course knowledge</string>
+    <string name="about_builtBackEnd"> <b>Running with:</b> <i>NodeJS</i>, <i>TypeScript</i>, <i>Express Framework</i>, <i>Knex library</i> and <i>PostgreSQL DBMS</i></string>
 
     <!-- Cloud Texts -->
     <string name="cloud_notice">Backup and restore your tracking data with one click!\n<b>Read the warnings before perform any action!</b></string>
