@@ -1,15 +1,19 @@
 package com.lightdestory.trackbook.collection
 
 
+import android.app.ActivityOptions
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textview.MaterialTextView
+import com.lightdestory.trackbook.BookEditActivity
 import com.lightdestory.trackbook.R
 
 class LibraryAdapter private constructor() : RecyclerView.Adapter<LibraryAdapter.ViewHolder>() {
@@ -22,7 +26,9 @@ class LibraryAdapter private constructor() : RecyclerView.Adapter<LibraryAdapter
         val count: MaterialTextView = view.findViewById(R.id.bookshelfListItemCount)
         init {
             view.setOnClickListener {
-
+                val goEdit: Intent = Intent(view.context, BookEditActivity::class.java)
+                    .putExtra("book_position", adapterPosition)
+                view.context.startActivity(goEdit)
             }
             view.setOnLongClickListener {
                 MaterialAlertDialogBuilder(it.context)

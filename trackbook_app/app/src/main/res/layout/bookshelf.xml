@@ -33,22 +33,69 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bookshelfBanner"
-        app:layout_constraintVertical_bias="0.05">
+        app:layout_constraintVertical_bias="0.0">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/bookshelfList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
             android:layout_margin="10dp"
+            android:padding="10dp"
             android:scrollbars="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/bookshelfListContainer" />
-
     </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/bookshelfFloatMenu"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:fabCustomSize="50dp"
+        app:maxImageSize="30dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:backgroundTint="?attr/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.98"
+        app:srcCompat="@drawable/icon_menu" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/bookshelfFloatMenuAdd"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="?attr/colorPrimary"
+        android:clickable="true"
+        android:visibility="gone"
+        android:focusable="true"
+        app:fabCustomSize="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/bookshelfFloatMenu"
+        app:layout_constraintEnd_toEndOf="@+id/bookshelfFloatMenu"
+        app:maxImageSize="30dp"
+        app:srcCompat="@drawable/icon_add" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/bookshelfFloatMenuRemoveAll"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:visibility="gone"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="?attr/colorPrimary"
+        android:clickable="true"
+        android:focusable="true"
+        app:fabCustomSize="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/bookshelfFloatMenuAdd"
+        app:layout_constraintEnd_toEndOf="@+id/bookshelfFloatMenuAdd"
+        app:maxImageSize="30dp"
+        app:srcCompat="@drawable/icon_delete" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

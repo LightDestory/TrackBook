@@ -13,6 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TrackBook">
         <activity
+            android:name=".BookEditActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
             android:name=".BookshelfActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"

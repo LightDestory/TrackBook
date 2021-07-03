@@ -26,6 +26,11 @@ class Library private constructor() {
         saveLibrary(context)
     }
 
+    fun deleteAll(context: Context) {
+        books.clear()
+        saveLibrary(context)
+    }
+
     fun jsonLibrary(): String {
         val gson: Gson = Gson()
         return gson.toJson(books)

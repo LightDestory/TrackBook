@@ -59,6 +59,18 @@
     <string name="label_About">About</string>
     <string name="label_LogOut">Log Out</string>
 
+    <!-- Edit texts -->
+    <string name="label_EditBook">Update track</string>
+    <string name="edit_colorHint">Selected Color</string>
+    <string name="edit_titleHint">New book\'s title</string>
+    <string name="edit_titleHintHelper">It can contain letters, numbers special chars [\'-_,.]</string>
+    <string name="edit_pageHint">How many page did you read?</string>
+    <string name="edit_pageHintShake">You can shake the phone to increase the number!</string>
+    <string name="edit_SaveButton">Save</string>
+    <string name="edit_InvalidBookData">Invalid Book Data</string>
+    <string name="edit_overwriteBookTitle">Book data overwrite</string>
+    <string name="edit_overwriteBookDesc">Do you want to apply the changes?</string>
+
     <!-- About Texts -->
     <string name="about_application">About Application</string>
     <string name="about_dev"> <b>Developed by:</b> <i>Alessio Tudisco (LightDestory)</i></string>
@@ -80,6 +92,7 @@
     <!-- Bookshelf Texts -->
     <string name="bookshelf_DeleteBookTitle">Delete Confirm</string>
     <string name="bookshelf_DeleteBookDesc">Do you really want to delete the selected book?\n$1 ($2)</string>
+    <string name="bookshelf_DeleteAllBooksDesc">Do you really want to delete all the books?</string>
 
     <!-- LogOut -->
     <string name="logOut_Title">Logging out</string>
@@ -92,6 +105,10 @@
     <string name="check_InvalidPasswordTitle">Invalid Password</string>
     <string name="check_InvalidPenNameDesc">The pen name must be at max 16 character or less.Pen name must be composed by letters or number</string>
     <string name="check_InvalidPenNameTitle">Invalid Pen Name</string>
+    <string name="check_InvalidTitleBookTitle">Invalid Book Title</string>
+    <string name="check_InvalidPageBookTitle">Invalid Page Number</string>
+    <string name="check_InvalidTitleBookDesc">Book\'s title must only contain letters, number and special characters such as \'-_.,</string>
+    <string name="check_InvalidPageBookDesc">Book\'s page read must be a valid number!</string>
 
     <!-- API -->
     <string name="endpoint_error">Unable to get response from Endpoint</string>
@@ -120,4 +137,31 @@
     <string name="endpoint_restore_title">Data Restore</string>
     <string name="endpoint_restore_success">Data has been restored successfully!</string>
 
+    <!-- Colors Name -->
+    <string name="bright_pink">Bright Pink</string>
+    <string name="red">Red</string>
+    <string name="orange">Orange</string>
+    <string name="yellow">Yellow</string>
+    <string name="chartreuse">Chartreuse</string>
+    <string name="green">Green</string>
+    <string name="spring_green">Spring Green</string>
+    <string name="cyan">Cyan</string>
+    <string name="azure">Azure</string>
+    <string name="blue">Blue</string>
+    <string name="violet">Violet</string>
+    <string name="magenta">Magenta</string>
+    <string-array name="book_colors_name">
+        <item>@string/bright_pink</item>
+        <item>@string/red</item>
+        <item>@string/orange</item>
+        <item>@string/yellow</item>
+        <item>@string/chartreuse</item>
+        <item>@string/green</item>
+        <item>@string/spring_green</item>
+        <item>@string/cyan</item>
+        <item>@string/azure</item>
+        <item>@string/blue</item>
+        <item>@string/violet</item>
+        <item>@string/magenta</item>
+    </string-array>
 </resources>
