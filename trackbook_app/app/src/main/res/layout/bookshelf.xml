@@ -6,4 +6,49 @@
     android:layout_height="match_parent"
     tools:context=".BookshelfActivity">
 
+    <include
+        android:id="@+id/include"
+        layout="@layout/component_toolbar"
+        app:layout_constraintBottom_toTopOf="@id/bookshelfBanner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/bookshelfBanner"
+        android:layout_width="fill_parent"
+        android:layout_height="180dp"
+        android:layout_marginTop="15dp"
+        android:transitionName="@string/transition_Logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/include"
+        app:srcCompat="@drawable/art_mybooks" />
+
+    <LinearLayout
+        android:id="@+id/bookshelfListContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bookshelfBanner"
+        app:layout_constraintVertical_bias="0.05">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/bookshelfList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:scrollbars="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bookshelfListContainer" />
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

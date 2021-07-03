@@ -35,10 +35,7 @@ class DashboardActivity : AppCompatActivity() {
         binding.dashboardLogOutCard.setOnClickListener { logOut() }
         binding.dashboardAboutCard.setOnClickListener { navigate("about") }
         binding.dashboardCloudCard.setOnClickListener { navigate("cloud") }
-        binding.dashboardMyBooksCard.setOnClickListener { test() }
-    }
-
-    private fun test() {
+        binding.dashboardMyBooksCard.setOnClickListener { navigate("bookshelf") }
     }
 
     private fun navigate(destination: String) {
@@ -46,11 +43,25 @@ class DashboardActivity : AppCompatActivity() {
             "about" -> Intent(this, AboutActivity::class.java)
             "login" -> Intent(this, LoginActivity::class.java)
             "cloud" -> Intent(this, CloudActivity::class.java)
+            "bookshelf" -> Intent(this, BookshelfActivity::class.java)
             else -> null
         }
+        val transitions = ArrayList<Pair<View, String>>()
+        transitions.add(
+            Pair<View, String>(
+                binding.include.toolbar,
+                getString(R.string.transition_AppBar)
+            )
+        )
+        transitions.add(
+            Pair<View, String>(
+                binding.dashboardBanner,
+                getString(R.string.transition_Logo)
+            )
+        )
         val options = ActivityOptions.makeSceneTransitionAnimation(
             this,
-            Pair<View, String>(binding.include.toolbar, getString(R.string.transition_AppBar))
+            *transitions.toTypedArray()
         )
         startActivity(dest, options.toBundle())
         if (destination == "login") {

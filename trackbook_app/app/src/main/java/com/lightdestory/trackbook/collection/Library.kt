@@ -9,7 +9,7 @@ import com.lightdestory.trackbook.utils.SharedPreferencesSingleton
 
 class Library private constructor() {
 
-    private val books: ArrayList<BookReading> = ArrayList()
+    val books: ArrayList<BookReading> = ArrayList()
 
     companion object {
         val instance: Library by lazy { Library() }
@@ -21,22 +21,14 @@ class Library private constructor() {
         saveLibrary(context)
     }
 
-    fun deleteBook(index: Int) {
+    fun deleteBook(context: Context, index: Int) {
         books.removeAt(index)
-    }
-
-    private fun testData() {
-        books.add(BookReading("1234567890123", "Test1", "2021-07-03", 32, "1"))
-        books.add(BookReading("1234567890124", "Test1", "2021-07-02", 21, "2"))
+        saveLibrary(context)
     }
 
     fun jsonLibrary(): String {
         val gson: Gson = Gson()
         return gson.toJson(books)
-    }
-
-    init {
-        testData()
     }
 
     private fun saveLibrary(context: Context) {
@@ -45,5 +37,11 @@ class Library private constructor() {
             putString(context.getString(R.string.pref_Library), jsonLibrary())
             commit()
         }
+    }
+
+    init {
+        val gson: Gson = Gson()
+        books.addAll(gson.fromJson(SharedPreferencesSingleton.getInstance(null).preferences.getString("library", "[]"), Array<BookReading>::class.java)
+            .toList())
     }
 }

@@ -77,6 +77,10 @@
     <string name="cloud_restore_desc">Your local tracking data will be overwritten by the cloud\'s one!</string>
     <string name="cloud_backup_desc">Your cloud tracking data will be overwritten by the local\'s one!</string>
 
+    <!-- Bookshelf Texts -->
+    <string name="bookshelf_DeleteBookTitle">Delete Confirm</string>
+    <string name="bookshelf_DeleteBookDesc">Do you really want to delete the selected book?\n$1 ($2)</string>
+
     <!-- LogOut -->
     <string name="logOut_Title">Logging out</string>
     <string name="logOut_Desc">Are you sure about it?\nBe careful to back up your data before logging out, if you log out every data will be wiped.\nDo you want to continue?</string>
