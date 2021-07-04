@@ -42,10 +42,10 @@ There are 3 main routes: *account*, *user* and *book*.
 
 **Authentication**: To **access this API you must fill the Authorization header** of the request with the **token** received with the _login api_.
 
-| API          | Method | Role                 | Parameter                                 | Response                                                                                   |
-| ------------ | ------ | -------------------- | ----------------------------------------- | ------------------------------------------------------------------------------------------ |
-| _/api/user/_ | GET    | Retrieve user's data | None                                      | **JSON Array**: [{*title*:string, *isbn*:string, *page_read*:string, *color*:string}, ...] |
-| _/api/user/_ | POST   | Backup user's data   | user's data in JSON Array on body request | **JSON Object**: <br> *Success* <br> { *status*:string, *result*:string}                   |
+| API          | Method | Role                 | Parameter                                 | Response                                                                                                                                                     |
+| ------------ | ------ | -------------------- | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| _/api/user/_ | GET    | Retrieve user's data | None                                      | **JSON Object**: <br> *Success* <br> { *status*:string, *result*:[{*title*:string, *isbn*:string, *page_read*:int, *color*:string, start_read:string}, ...]} |
+| _/api/user/_ | POST   | Backup user's data   | user's data in JSON Array on body request | **JSON Object**: <br> *Success* <br> { *status*:string, *result*:string}                                                                                     |
 
 ### Book route
 
