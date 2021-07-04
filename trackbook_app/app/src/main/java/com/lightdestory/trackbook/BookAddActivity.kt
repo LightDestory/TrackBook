@@ -2,6 +2,7 @@ package com.lightdestory.trackbook
 
 import android.app.ProgressDialog
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.hardware.Sensor
 import android.hardware.SensorManager
 import android.os.Bundle
@@ -9,17 +10,17 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.gson.Gson
 import com.google.zxing.integration.android.IntentIntegrator
 import com.google.zxing.integration.android.IntentResult
 import com.lightdestory.trackbook.collection.Library
 import com.lightdestory.trackbook.databinding.BookAddBinding
-import com.lightdestory.trackbook.models.BookReading
 import com.lightdestory.trackbook.models.User
 import com.lightdestory.trackbook.network.APIBuddy
 import com.lightdestory.trackbook.sensor.ShakeSensorEventListener
@@ -27,6 +28,7 @@ import com.lightdestory.trackbook.utils.DataChecker
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.jar.Manifest
 
 
 class BookAddActivity : AppCompatActivity() {
@@ -75,7 +77,7 @@ class BookAddActivity : AppCompatActivity() {
             mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
             SensorManager.SENSOR_DELAY_NORMAL
         )
-        binding.addISBNScan.setOnClickListener { scanISBN() }
+        binding.addISBNScan.setOnClickListener { scan("isbn") }
         binding.addSave.setOnClickListener { add() }
         setContentView(binding.root)
     }
@@ -119,6 +121,35 @@ class BookAddActivity : AppCompatActivity() {
         return true
     }
 
+    private fun isPermitted(): Boolean {
+        return when (ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA)) {
+            PackageManager.PERMISSION_GRANTED -> true
+            else -> false
+        }
+    }
+    private fun requestPermission() {
+        requestPermissions(arrayOf(android.Manifest.permission.CAMERA), 1)
+    }
+
+    private fun scan(scanType: String) {
+        if(!isPermitted()){
+            MaterialAlertDialogBuilder(this)
+                .setIcon(R.drawable.icon_warning)
+                .setTitle(R.string.add_PermissionTitle)
+                .setMessage(R.string.add_PermissionDesc)
+                .setNegativeButton(R.string.dialog_No) {dialog, _ -> dialog.dismiss()}
+                .setPositiveButton(R.string.dialog_Yes) { dialog, _ ->
+                    dialog.dismiss()
+                    requestPermission()
+                }.show()
+            return
+        }
+        if(scanType == "isbn")
+            scanISBN()
+        else
+            TODO()
+    }
+
     private fun scanISBN() {
         val integrator: IntentIntegrator = IntentIntegrator(this)
         integrator.setPrompt(getString(R.string.add_scanISBNTitle))
@@ -132,15 +163,25 @@ class BookAddActivity : AppCompatActivity() {
         if (!isDataGood()) {
             return
         }
+        val alert = MaterialAlertDialogBuilder(this)
+            .setCancelable(false)
         val isbn: String = binding.addISBNInput.editText?.text.toString()
+        if(Library.instance.findBookByISBN(isbn)){
+            alert.setIcon(R.drawable.icon_warning)
+                .setTitle(R.string.add_existBookTitle)
+                .setMessage(R.string.add_existBookDesc)
+                .setPositiveButton(R.string.dialog_OK) { dialog, _ ->
+                    dialog.dismiss()
+                }.show()
+            return
+        }
         val title: String = binding.addTitleInput.editText?.text.toString()
         val color: String = colorList.indexOf(colorPicker.text.toString()).toString()
         val page_read: Int = binding.addPageReadInput.editText?.text.toString().toInt()
         val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val start_read: String = sdf.format(Date())
         Library.instance.addBook(this, isbn, title, color, page_read, start_read)
-        MaterialAlertDialogBuilder(this)
-            .setIcon(R.drawable.icon_success)
+        alert.setIcon(R.drawable.icon_success)
             .setTitle(R.string.add_savedBookTitle)
             .setMessage(R.string.add_savedBookDesc)
             .setPositiveButton(R.string.dialog_OK) { dialog, _ ->

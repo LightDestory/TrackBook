@@ -20,6 +20,14 @@ class Library private constructor() {
         saveLibrary(context)
     }
 
+    fun findBookByISBN(isbn: String): Boolean {
+        books.forEach { bookReading ->
+            if(bookReading.isbn == isbn)
+                return true
+        }
+        return false
+    }
+
     fun addBook(context: Context, isbn: String, title: String, color: String, page_read: Int, start_read: String) {
         books.add(BookReading(isbn, title, start_read, page_read, color))
         saveLibrary(context)

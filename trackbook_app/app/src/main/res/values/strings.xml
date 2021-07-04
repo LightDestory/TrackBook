@@ -75,6 +75,10 @@
     <string name="add_ScanButton">Scan</string>
     <string name="add_savedBookTitle">Book Added</string>
     <string name="add_savedBookDesc">The book has been inserted into your library</string>
+    <string name="add_existBookTitle">Book already exists</string>
+    <string name="add_existBookDesc">The book\'s isbn is already into your library</string>
+    <string name="add_PermissionTitle">Permission needed</string>
+    <string name="add_PermissionDesc">Camera access is needed to perform OCR or bar code scanning!\nDo you want to allow it?</string>
     <string name="add_scanISBNTitle">Scanning ISBN</string>
     <string name="add_scanNoResult">Scan did not produce any valid result</string>
     <string name="add_scanDBLookUp">Do you want to search for book\'s title on our database?</string>
