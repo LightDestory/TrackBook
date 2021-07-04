@@ -75,6 +75,10 @@
     <string name="add_ScanButton">Scan</string>
     <string name="add_savedBookTitle">Book Added</string>
     <string name="add_savedBookDesc">The book has been inserted into your library</string>
+    <string name="add_scanISBNTitle">Scanning ISBN</string>
+    <string name="add_scanNoResult">Scan did not produce any valid result</string>
+    <string name="add_scanDBLookUp">Do you want to search for book\'s title on our database?</string>
+    <string name="add_scannedDB">Found: $1</string>
 
     <!-- Edit texts -->
     <string name="label_EditBook">Update Tracking</string>
@@ -151,6 +155,11 @@
     <string name="endpoint_restore_tag">tag_RestoreAPI</string>
     <string name="endpoint_restore_title">Data Restore</string>
     <string name="endpoint_restore_success">Data has been restored successfully!</string>
+
+    <!-- Book API -->
+    <string name="endpoint_book">https://trackbook.lightdestory.com/api/book/$1</string>
+    <string name="endpoint_book_tag">tag_BookAPI</string>
+    <string name="endpoint_book_title">Database Look up</string>
 
     <!-- Colors Name -->
     <string name="bright_pink">Bright Pink</string>

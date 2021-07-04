@@ -1,5 +1,7 @@
 package com.lightdestory.trackbook
 
+import android.app.ProgressDialog
+import android.content.Intent
 import android.hardware.Sensor
 import android.hardware.SensorManager
 import android.os.Bundle
@@ -9,11 +11,20 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat
+import com.android.volley.Request
+import com.android.volley.toolbox.JsonObjectRequest
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.gson.Gson
+import com.google.zxing.integration.android.IntentIntegrator
+import com.google.zxing.integration.android.IntentResult
 import com.lightdestory.trackbook.collection.Library
 import com.lightdestory.trackbook.databinding.BookAddBinding
+import com.lightdestory.trackbook.models.BookReading
+import com.lightdestory.trackbook.models.User
+import com.lightdestory.trackbook.network.APIBuddy
 import com.lightdestory.trackbook.sensor.ShakeSensorEventListener
 import com.lightdestory.trackbook.utils.DataChecker
+import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -64,6 +75,7 @@ class BookAddActivity : AppCompatActivity() {
             mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
             SensorManager.SENSOR_DELAY_NORMAL
         )
+        binding.addISBNScan.setOnClickListener { scanISBN() }
         binding.addSave.setOnClickListener { add() }
         setContentView(binding.root)
     }
@@ -107,8 +119,17 @@ class BookAddActivity : AppCompatActivity() {
         return true
     }
 
+    private fun scanISBN() {
+        val integrator: IntentIntegrator = IntentIntegrator(this)
+        integrator.setPrompt(getString(R.string.add_scanISBNTitle))
+            .setOrientationLocked(false)
+            .setTorchEnabled(true)
+            .setDesiredBarcodeFormats(IntentIntegrator.EAN_13, IntentIntegrator.EAN_8)
+            .initiateScan()
+    }
+
     private fun add() {
-        if(!isDataGood()) {
+        if (!isDataGood()) {
             return
         }
         val isbn: String = binding.addISBNInput.editText?.text.toString()
@@ -122,7 +143,7 @@ class BookAddActivity : AppCompatActivity() {
             .setIcon(R.drawable.icon_success)
             .setTitle(R.string.add_savedBookTitle)
             .setMessage(R.string.add_savedBookDesc)
-            .setPositiveButton(R.string.dialog_OK) {dialog, _ ->
+            .setPositiveButton(R.string.dialog_OK) { dialog, _ ->
                 dialog.dismiss()
                 onBackPressed()
             }.show()
@@ -137,6 +158,50 @@ class BookAddActivity : AppCompatActivity() {
             )
     }
 
+    private fun bookTitleLookUp(isbn: String) {
+        val progress = ProgressDialog(this)
+        progress.setMessage(getString(R.string.endpoint_loading))
+        progress.show()
+        val dialog = MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.endpoint_book_title)
+            .setCancelable(false)
+        val req: JsonObjectRequest = object : JsonObjectRequest(
+            Request.Method.GET, getString(R.string.endpoint_book).replace("$1", isbn), null,
+            { response ->
+                progress.dismiss()
+                val title: String = response.getString("result")
+                    dialog.setMessage(getString(R.string.add_scannedDB).replace("$1", title))
+                    dialog.setIcon(R.drawable.icon_success)
+                    .setNeutralButton(R.string.dialog_OK) { dialog, _ ->
+                        dialog.dismiss()
+                        binding.addTitleInput.editText?.setText(title)
+                    }
+                    .show()
+            }, { error ->
+                progress.dismiss()
+                if (error?.networkResponse != null && error.networkResponse.data.decodeToString()
+                        .isNotEmpty()
+                ) {
+                    val err = JSONObject(error.networkResponse.data.decodeToString())
+                    dialog.setIcon(R.drawable.icon_warning)
+                        .setMessage(err.getString("result"))
+                } else {
+                    dialog.setIcon(R.drawable.icon_error)
+                        .setMessage(R.string.endpoint_error)
+                }
+                dialog.setNeutralButton(R.string.dialog_OK) { dialog, _ -> dialog.dismiss() }
+                dialog.show()
+            }) {
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+                headers["Authorization"] = User.instance.token
+                return headers
+            }
+        }
+        req.tag = getString(R.string.endpoint_book_tag)
+        APIBuddy.getInstance(this).addRequest(req)
+    }
+
     override fun onBackPressed() {
         super.onBackPressed()
         finish()
@@ -148,11 +213,46 @@ class BookAddActivity : AppCompatActivity() {
             mSensorListener,
             mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
             SensorManager.SENSOR_DELAY_NORMAL
-        );
+        )
+    }
+
+    override fun onStop() {
+        super.onStop()
+        APIBuddy.getInstance(this).stopPending(getString(R.string.endpoint_book_tag))
     }
 
     override fun onPause() {
         super.onPause()
         mSensorManager.unregisterListener(mSensorListener);
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == IntentIntegrator.REQUEST_CODE) {
+            val scanResult: IntentResult? =
+                IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
+            val dialogInfo = MaterialAlertDialogBuilder(this)
+                .setCancelable(false)
+                .setTitle(R.string.add_scanISBNTitle)
+            if (scanResult?.contents != null) {
+                var code: String = scanResult.contents.toString()
+                if(code.length  == 10) code = "978$code"
+                binding.addISBNInput.editText?.setText(code)
+                dialogInfo.setIcon(R.drawable.icon_info)
+                    .setMessage(R.string.add_scanDBLookUp)
+                    .setNegativeButton(R.string.dialog_No) { dialog, _ -> dialog.dismiss() }
+                    .setPositiveButton(R.string.dialog_Yes) {dialog, _ ->
+                        dialog.dismiss()
+                        bookTitleLookUp(code)
+                    }
+            } else {
+                dialogInfo.setIcon(R.drawable.icon_warning)
+                    .setMessage(R.string.add_scanNoResult)
+                    .setNeutralButton(R.string.dialog_OK) { dialog, _ -> dialog.dismiss() }
+            }
+            dialogInfo.show()
+        } else {
+            super.onActivityResult(requestCode, resultCode, data)
+        }
+
     }
 }
