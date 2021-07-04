@@ -37,6 +37,3 @@ If you got everything, we can start building:
 3) Make your changes and test with debug builds
 4) Make your own keystore and build a *signed* apk
 
-## :warning: Notes
-
-- PostgreSQL may require a change inside _pg_hba.conf_ file to allow md5 authentication!
