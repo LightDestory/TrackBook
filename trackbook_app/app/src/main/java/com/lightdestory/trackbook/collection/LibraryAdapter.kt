@@ -61,7 +61,7 @@ class LibraryAdapter private constructor() : RecyclerView.Adapter<LibraryAdapter
         val currentItem = Library.instance.books[position]
         holder.title.text = currentItem.title
         holder.isbn.text = currentItem.isbn
-        holder.date.text = currentItem.start_read
+        holder.date.text = currentItem.start_read.substring(0, 10);
         holder.count.text = currentItem.page_read.toString()
         val color : Int = holder.itemView.context.applicationContext.resources.getIntArray(R.array.book_colors)[currentItem.color.toInt()]
         holder.image.drawable.colorFilter = BlendModeColorFilterCompat.createBlendModeColorFilterCompat(color, BlendModeCompat.SRC_ATOP)
