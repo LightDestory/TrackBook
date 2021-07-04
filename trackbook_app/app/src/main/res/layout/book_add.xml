@@ -120,14 +120,17 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:transitionName="@string/transition_Email"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="13"
                         app:endIconMode="clear_text"
                         app:errorEnabled="true"
-                        app:helperTextEnabled="true"
                         app:helperText="@string/add_ISBNHint"
+                        app:helperTextEnabled="true"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
                         app:startIconDrawable="@drawable/icon_isbn">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -136,6 +139,19 @@
                             android:hint="@string/add_ISBNTitle"
                             android:inputType="textNoSuggestions" />
                     </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/addISBNScan"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        app:icon="@drawable/icon_scan"
+                        android:text="@string/add_ScanButton"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/addISBNInput" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -175,12 +191,13 @@
                         android:transitionName="@string/transition_Email"
                         app:endIconMode="clear_text"
                         app:errorEnabled="true"
-                        app:helperTextEnabled="true"
                         app:helperText="@string/book_titleHint"
+                        app:helperTextEnabled="true"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
                         app:startIconDrawable="@drawable/icon_edit">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -190,6 +207,18 @@
                             android:inputType="textNoSuggestions" />
                     </com.google.android.material.textfield.TextInputLayout>
 
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/addTitleScan"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/add_ScanButton"
+                        android:textSize="12sp"
+                        app:icon="@drawable/icon_scan"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/addTitleInput" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>

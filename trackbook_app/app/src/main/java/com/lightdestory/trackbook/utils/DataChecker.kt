@@ -10,7 +10,8 @@ class DataChecker private constructor() {
         "^[a-zA-Z0-9\\.\\,\\#\\?\\-\\_]{8,}$",
         "^[a-zA-Z0-9]{3,16}$",
         "^[A-Za-z0-9 \',-_.]{2,}$",
-        "^[0-9]+$"
+        "^[0-9]+$",
+        "^(978|979)?[0-9]{10}$"
     )
 
     companion object {
@@ -19,6 +20,7 @@ class DataChecker private constructor() {
         const val DATA_TYPE_PEN_NAME = 2
         const val DATA_TYPE_BOOK_TITLE = 3
         const val DATA_TYPE_BOOK_PAGE = 4
+        const val DATA_TYPE_BOOK_ISBN = 5
         private var instance: DataChecker? = null
         fun getInstance(): DataChecker {
             if (instance == null)

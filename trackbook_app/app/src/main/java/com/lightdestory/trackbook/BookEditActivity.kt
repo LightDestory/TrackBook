@@ -71,7 +71,7 @@ class BookEditActivity : AppCompatActivity() {
         setContentView(binding.root)
     }
 
-    private fun areCredentialsGood(): Boolean {
+    private fun isDataGood(): Boolean {
         val titleMatch: Boolean = DataChecker.getInstance().checkData(
             binding.editTitleInput.editText?.text.toString(),
             DataChecker.DATA_TYPE_BOOK_TITLE
@@ -103,7 +103,7 @@ class BookEditActivity : AppCompatActivity() {
     }
 
     private fun saveData() {
-        if (!areCredentialsGood()) {
+        if (!isDataGood()) {
             return
         }
         MaterialAlertDialogBuilder(this)

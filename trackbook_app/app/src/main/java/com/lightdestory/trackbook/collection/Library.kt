@@ -15,6 +15,16 @@ class Library private constructor() {
         val instance: Library by lazy { Library() }
     }
 
+    fun addBook(context: Context, book: BookReading) {
+        books.add(book)
+        saveLibrary(context)
+    }
+
+    fun addBook(context: Context, isbn: String, title: String, color: String, page_read: Int, start_read: String) {
+        books.add(BookReading(isbn, title, start_read, page_read, color))
+        saveLibrary(context)
+    }
+
     fun loadBooks(context: Context, newBooks: List<BookReading>) {
         books.clear()
         books.addAll(newBooks)
