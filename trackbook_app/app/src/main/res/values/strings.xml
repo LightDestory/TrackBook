@@ -72,6 +72,9 @@
     <string name="add_ISBNTitle">New book\'s ISBN</string>
     <string name="add_ISBNHint">It must be a 13-digit code</string>
     <string name="add_SaveButton">Add</string>
+    <string name="add_ScanButton">Scan</string>
+    <string name="add_savedBookTitle">Book Added</string>
+    <string name="add_savedBookDesc">The book has been inserted into your library</string>
 
     <!-- Edit texts -->
     <string name="label_EditBook">Update Tracking</string>
@@ -89,6 +92,8 @@
     <string name="about_backendEndpoint"> <b>Current Endpoint:</b>\n<i>&endpoint;</i></string>
     <string name="about_backendLanguages"> <b>Developed with:</b> Web Programming\'s course knowledge</string>
     <string name="about_builtBackEnd"> <b>Running with:</b> <i>NodeJS</i>, <i>TypeScript</i>, <i>Express Framework</i>, <i>Knex library</i> and <i>PostgreSQL DBMS</i></string>
+    <string name="about_GitHubTitle">It\'s open-source! Visit repository~</string>
+    <string name="about_GitHubLink">https://github.com/LightDestory/TrackBook</string>
 
     <!-- Cloud Texts -->
     <string name="cloud_notice">Backup and restore your tracking data with one click!\n<b>Read the warnings before perform any action!</b></string>
@@ -117,6 +122,8 @@
     <string name="check_InvalidPageBookTitle">Invalid Page Number</string>
     <string name="check_InvalidTitleBookDesc">Book\'s title must only contain letters, number and special characters such as \'-_.,</string>
     <string name="check_InvalidPageBookDesc">Book\'s page read must be a valid number!</string>
+    <string name="check_InvalidISBNBookTitle">Invalid ISBN</string>
+    <string name="check_InvalidISBNBookDesc">The entered ISBN code is not compatible with International Standard Book Number</string>
 
     <!-- API -->
     <string name="endpoint_error">Unable to get response from Endpoint</string>

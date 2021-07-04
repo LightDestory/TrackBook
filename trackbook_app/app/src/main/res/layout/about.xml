@@ -42,15 +42,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/aboutBanner" />
+
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/aboutSlogan"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:paddingHorizontal="10dp"
             android:text="@string/slogan"
             android:textAlignment="center"
-            android:textStyle="italic"
             android:textSize="18sp"
-            android:paddingHorizontal="10dp"
+            android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/aboutAppName" />
@@ -61,10 +62,11 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/about_dev"
+            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/aboutSlogan"
-            android:textAlignment="center" />
+            app:layout_constraintTop_toBottomOf="@id/aboutSlogan" />
+
         <LinearLayout
             android:id="@+id/aboutAppRow"
             android:layout_width="fill_parent"
@@ -133,19 +135,21 @@
                             android:padding="5dp"
                             android:text="@string/about_ide"
                             app:drawableStartCompat="@drawable/icon_dev" />
+
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/aboutAppSubInfoLanguages"
                             android:layout_width="fill_parent"
-                            android:layout_weight="0"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0"
                             android:padding="5dp"
                             android:text="@string/about_languages"
                             app:drawableStartCompat="@drawable/icon_dev2" />
+
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/aboutAppSubInfoUsing"
                             android:layout_width="fill_parent"
-                            android:layout_weight="0"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0"
                             android:padding="5dp"
                             android:text="@string/about_builtApp"
                             app:drawableStartCompat="@drawable/icon_dev3" />
@@ -153,6 +157,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/aboutBackEndRow"
             android:layout_width="fill_parent"
@@ -221,23 +226,80 @@
                             android:padding="5dp"
                             android:text="@string/about_backendEndpoint"
                             app:drawableStartCompat="@drawable/icon_backend_endpoint" />
+
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/aboutBackEndSubInfoLanguages"
                             android:layout_width="fill_parent"
-                            android:layout_weight="0"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0"
                             android:padding="5dp"
                             android:text="@string/about_backendLanguages"
                             app:drawableStartCompat="@drawable/icon_dev2" />
+
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/aboutBackEndSubInfoUsing"
                             android:layout_width="fill_parent"
-                            android:layout_weight="0"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0"
                             android:padding="5dp"
                             android:text="@string/about_builtBackEnd"
                             app:drawableStartCompat="@drawable/icon_dev3" />
                     </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/aboutGitHubRow"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/aboutBackEndRow">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/aboutGitHubCard"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1.0"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?selectableItemBackgroundBorderless"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="10dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:padding="15dp">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/aboutGitHubCardIcon"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:scaleType="centerInside"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.1"
+                        app:srcCompat="@drawable/icon_github" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/aboutGitHubTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/about_GitHubTitle"
+                        android:textAlignment="center"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/aboutGitHubCardIcon" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
