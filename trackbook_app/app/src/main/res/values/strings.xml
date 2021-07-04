@@ -80,9 +80,11 @@
     <string name="add_PermissionTitle">Permission needed</string>
     <string name="add_PermissionDesc">Camera access is needed to perform OCR or bar code scanning!\nDo you want to allow it?</string>
     <string name="add_scanISBNTitle">Scanning ISBN</string>
+    <string name="add_scanTitleTitle">Scanning Title</string>
     <string name="add_scanNoResult">Scan did not produce any valid result</string>
     <string name="add_scanDBLookUp">Do you want to search for book\'s title on our database?</string>
     <string name="add_scannedDB">Found: $1</string>
+    <string name="add_scannedTitle">Found: $1\nDo you want to use it?</string>
 
     <!-- Edit texts -->
     <string name="label_EditBook">Update Tracking</string>

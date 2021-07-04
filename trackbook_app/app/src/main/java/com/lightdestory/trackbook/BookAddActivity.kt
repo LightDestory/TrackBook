@@ -3,9 +3,11 @@ package com.lightdestory.trackbook
 import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.hardware.Sensor
 import android.hardware.SensorManager
 import android.os.Bundle
+import android.provider.MediaStore
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
@@ -16,7 +18,13 @@ import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
+import com.google.android.gms.tasks.Task
+import com.google.android.gms.tasks.Tasks
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.mlkit.vision.common.InputImage
+import com.google.mlkit.vision.text.Text
+import com.google.mlkit.vision.text.TextRecognition
+import com.google.mlkit.vision.text.TextRecognizerOptions
 import com.google.zxing.integration.android.IntentIntegrator
 import com.google.zxing.integration.android.IntentResult
 import com.lightdestory.trackbook.collection.Library
@@ -78,6 +86,7 @@ class BookAddActivity : AppCompatActivity() {
             SensorManager.SENSOR_DELAY_NORMAL
         )
         binding.addISBNScan.setOnClickListener { scan("isbn") }
+        binding.addTitleScan.setOnClickListener { scan("title") }
         binding.addSave.setOnClickListener { add() }
         setContentView(binding.root)
     }
@@ -127,27 +136,28 @@ class BookAddActivity : AppCompatActivity() {
             else -> false
         }
     }
+
     private fun requestPermission() {
         requestPermissions(arrayOf(android.Manifest.permission.CAMERA), 1)
     }
 
     private fun scan(scanType: String) {
-        if(!isPermitted()){
+        if (!isPermitted()) {
             MaterialAlertDialogBuilder(this)
                 .setIcon(R.drawable.icon_warning)
                 .setTitle(R.string.add_PermissionTitle)
                 .setMessage(R.string.add_PermissionDesc)
-                .setNegativeButton(R.string.dialog_No) {dialog, _ -> dialog.dismiss()}
+                .setNegativeButton(R.string.dialog_No) { dialog, _ -> dialog.dismiss() }
                 .setPositiveButton(R.string.dialog_Yes) { dialog, _ ->
                     dialog.dismiss()
                     requestPermission()
                 }.show()
             return
         }
-        if(scanType == "isbn")
+        if (scanType == "isbn")
             scanISBN()
         else
-            TODO()
+            dispatchTakePictureIntent()
     }
 
     private fun scanISBN() {
@@ -166,7 +176,7 @@ class BookAddActivity : AppCompatActivity() {
         val alert = MaterialAlertDialogBuilder(this)
             .setCancelable(false)
         val isbn: String = binding.addISBNInput.editText?.text.toString()
-        if(Library.instance.findBookByISBN(isbn)){
+        if (Library.instance.findBookByISBN(isbn)) {
             alert.setIcon(R.drawable.icon_warning)
                 .setTitle(R.string.add_existBookTitle)
                 .setMessage(R.string.add_existBookDesc)
@@ -211,8 +221,8 @@ class BookAddActivity : AppCompatActivity() {
             { response ->
                 progress.dismiss()
                 val title: String = response.getString("result")
-                    dialog.setMessage(getString(R.string.add_scannedDB).replace("$1", title))
-                    dialog.setIcon(R.drawable.icon_success)
+                dialog.setMessage(getString(R.string.add_scannedDB).replace("$1", title))
+                dialog.setIcon(R.drawable.icon_success)
                     .setNeutralButton(R.string.dialog_OK) { dialog, _ ->
                         dialog.dismiss()
                         binding.addTitleInput.editText?.setText(title)
@@ -267,21 +277,30 @@ class BookAddActivity : AppCompatActivity() {
         mSensorManager.unregisterListener(mSensorListener);
     }
 
+    private fun ocr(image: Bitmap) {
+
+    }
+
+    private fun dispatchTakePictureIntent() {
+        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivityForResult(takePictureIntent, 55)
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        val dialogInfo = MaterialAlertDialogBuilder(this)
+            .setCancelable(false)
         if (requestCode == IntentIntegrator.REQUEST_CODE) {
             val scanResult: IntentResult? =
                 IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
-            val dialogInfo = MaterialAlertDialogBuilder(this)
-                .setCancelable(false)
-                .setTitle(R.string.add_scanISBNTitle)
+            dialogInfo.setTitle(R.string.add_scanISBNTitle)
             if (scanResult?.contents != null) {
                 var code: String = scanResult.contents.toString()
-                if(code.length  == 10) code = "978$code"
+                if (code.length == 10) code = "978$code"
                 binding.addISBNInput.editText?.setText(code)
                 dialogInfo.setIcon(R.drawable.icon_info)
                     .setMessage(R.string.add_scanDBLookUp)
                     .setNegativeButton(R.string.dialog_No) { dialog, _ -> dialog.dismiss() }
-                    .setPositiveButton(R.string.dialog_Yes) {dialog, _ ->
+                    .setPositiveButton(R.string.dialog_Yes) { dialog, _ ->
                         dialog.dismiss()
                         bookTitleLookUp(code)
                     }
@@ -291,6 +310,48 @@ class BookAddActivity : AppCompatActivity() {
                     .setNeutralButton(R.string.dialog_OK) { dialog, _ -> dialog.dismiss() }
             }
             dialogInfo.show()
+        } else if (requestCode == 55) {
+            if (resultCode == RESULT_OK) {
+                val tmpBtm = data?.extras?.get("data") as Bitmap
+                val image = InputImage.fromBitmap(tmpBtm, 0)
+                val recognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS)
+                val progress = ProgressDialog(this)
+                progress.setMessage(getString(R.string.endpoint_loading))
+                progress.show()
+                val result: Task<Text> = recognizer.process(image)
+                    .addOnSuccessListener { visionText ->
+                        val filtered = visionText.text.replace("\n"," ")
+                        progress.dismiss()
+                        MaterialAlertDialogBuilder(this)
+                            .setTitle(R.string.add_scanTitleTitle)
+                            .setCancelable(false)
+                            .setIcon(R.drawable.icon_success)
+                            .setMessage(getString(R.string.add_scannedTitle).replace("$1", filtered))
+                            .setNegativeButton(R.string.dialog_No) { dialog, _ -> dialog.dismiss() }
+                            .setPositiveButton(R.string.dialog_Yes) {dialog, _ ->
+                                dialog.dismiss()
+                                binding.addTitleInput.editText?.setText(filtered)
+                            }
+                            .show()
+                    }
+                    .addOnFailureListener { e ->
+                        progress.dismiss()
+                        MaterialAlertDialogBuilder(this)
+                            .setTitle(R.string.add_scanTitleTitle)
+                            .setCancelable(false)
+                            .setIcon(R.drawable.icon_error)
+                            .setMessage(e.message)
+                            .setNeutralButton(R.string.dialog_OK) { dialog, _ -> dialog.dismiss() }
+                            .show()
+                    }
+                dialogInfo.setNeutralButton(R.string.dialog_OK) { dialog, _ -> dialog.dismiss() }
+            } else {
+                dialogInfo.setTitle(R.string.add_scanTitleTitle)
+                    .setIcon(R.drawable.icon_warning)
+                    .setMessage(R.string.add_scanNoResult)
+                    .setNeutralButton(R.string.dialog_OK) { dialog, _ -> dialog.dismiss() }
+                    .show()
+            }
         } else {
             super.onActivityResult(requestCode, resultCode, data)
         }
