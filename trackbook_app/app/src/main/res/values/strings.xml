@@ -124,7 +124,7 @@
     <!-- Check data texts -->
     <string name="check_InvalidEmailDesc">The entered email does not satisfy RFC 5322!</string>
     <string name="check_InvalidEmailTitle">Invalid Email</string>
-    <string name="check_InvalidPasswordDesc">"The password must be at least 8 character or more.\nPassword must be composed by letters, number or special characters\n(#?!@$%^&amp;*-)"</string>
+    <string name="check_InvalidPasswordDesc">"The password must be at least 8 character or more.\nPassword must be composed by letters, number or special characters\n(#?!@$%^&amp;*-_.,:;)"</string>
     <string name="check_InvalidPasswordTitle">Invalid Password</string>
     <string name="check_InvalidPenNameDesc">The pen name must be at max 16 character or less.Pen name must be composed by letters or number</string>
     <string name="check_InvalidPenNameTitle">Invalid Pen Name</string>

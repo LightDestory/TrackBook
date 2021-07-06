@@ -7,7 +7,7 @@ class DataChecker private constructor() {
 
     private val patterns = arrayListOf<String>(
         android.util.Patterns.EMAIL_ADDRESS.pattern(),
-        "^[a-zA-Z0-9#?!@\$%^&*-]{8,}$",
+        "^[a-zA-Z0-9#?!@$%^&*-_.,:;]{8,}$",
         "^[a-zA-Z0-9]{3,16}$",
         "^[A-Za-z0-9 \',-_.]{2,}$",
         "^[0-9]+$",
