@@ -277,10 +277,6 @@ class BookAddActivity : AppCompatActivity() {
         mSensorManager.unregisterListener(mSensorListener);
     }
 
-    private fun ocr(image: Bitmap) {
-
-    }
-
     private fun dispatchTakePictureIntent() {
         val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         startActivityForResult(takePictureIntent, 55)
