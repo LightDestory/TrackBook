@@ -51,17 +51,24 @@ class BookshelfActivity : AppCompatActivity() {
     }
 
     private fun miniFabDeleteAll() {
-        MaterialAlertDialogBuilder(this)
-            .setCancelable(false)
+        val alert: MaterialAlertDialogBuilder = MaterialAlertDialogBuilder(this)
+        alert.setCancelable(false)
             .setTitle(R.string.bookshelf_DeleteBookTitle)
             .setIcon(R.drawable.icon_warning)
-            .setMessage(R.string.bookshelf_DeleteAllBooksDesc)
-            .setNegativeButton(R.string.dialog_No) { dialog, _ -> dialog.dismiss()}
-            .setPositiveButton(R.string.dialog_Yes) {dialog, _ ->
-                Library.instance.deleteAll(this)
-                LibraryAdapter.instance.notifyDataSetChanged()
-                dialog.dismiss()
-            }.show()
+        if(Library.instance.books.size > 0){
+            alert.setMessage(R.string.bookshelf_DeleteAllBooksDesc)
+                .setNegativeButton(R.string.dialog_No) { dialog, _ -> dialog.dismiss()}
+                .setPositiveButton(R.string.dialog_Yes) {dialog, _ ->
+                    Library.instance.deleteAll(this)
+                    LibraryAdapter.instance.notifyDataSetChanged()
+                    checkBookshelfEmpty()
+                    dialog.dismiss()
+                }
+        } else {
+            alert.setMessage(R.string.bookshelf_EmptyDesc)
+                .setNeutralButton(R.string.dialog_OK) {dialog, _ -> dialog.dismiss()}
+        }
+        alert.show()
     }
 
     private fun setMiniFabVisibility() {
@@ -76,12 +83,28 @@ class BookshelfActivity : AppCompatActivity() {
             binding.bookshelfFloatMenuRemoveAll.startAnimation(animation)
     }
 
+    fun checkBookshelfEmpty() {
+        if(Library.instance.books.size == 0){
+            binding.bookshelfListContainer.visibility = View.GONE
+            binding.bookshelfEmpty.visibility = View.VISIBLE
+        }
+        else {
+            binding.bookshelfListContainer.visibility = View.VISIBLE
+            binding.bookshelfEmpty.visibility = View.GONE
+        }
+    }
+
     private fun fabToggle() {
         isFabOpen = !isFabOpen
         val icon: Int = if(isFabOpen) R.drawable.icon_close else R.drawable.icon_menu
         binding.bookshelfFloatMenu.setImageDrawable(getDrawable(icon))
         setMiniFabVisibility()
         setMiniFabAnimations()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        checkBookshelfEmpty()
     }
 
     override fun onBackPressed() {

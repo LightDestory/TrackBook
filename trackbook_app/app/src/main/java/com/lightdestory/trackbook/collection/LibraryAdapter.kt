@@ -12,6 +12,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textview.MaterialTextView
 import com.lightdestory.trackbook.BookEditActivity
+import com.lightdestory.trackbook.BookshelfActivity
 import com.lightdestory.trackbook.R
 
 class LibraryAdapter private constructor() : RecyclerView.Adapter<LibraryAdapter.ViewHolder>() {
@@ -40,6 +41,7 @@ class LibraryAdapter private constructor() : RecyclerView.Adapter<LibraryAdapter
                         if(position != RecyclerView.NO_POSITION){
                             Library.instance.deleteBook(it.context.applicationContext, adapterPosition)
                             instance.notifyItemRemoved(position)
+                            (it.context as BookshelfActivity).checkBookshelfEmpty()
                         }
                         dialog.dismiss()
                     }.show()

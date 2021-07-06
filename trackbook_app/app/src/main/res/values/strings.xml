@@ -116,6 +116,8 @@
     <string name="bookshelf_DeleteBookTitle">Delete Confirm</string>
     <string name="bookshelf_DeleteBookDesc">Do you really want to delete the selected book?\n$1 ($2)</string>
     <string name="bookshelf_DeleteAllBooksDesc">Do you really want to delete all the books?</string>
+    <string name="bookshelf_Empty">:(\nNo books!</string>
+    <string name="bookshelf_EmptyDesc">There are no books to delete!</string>
 
     <!-- LogOut -->
     <string name="logOut_Title">Logging out</string>
