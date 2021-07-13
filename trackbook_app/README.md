@@ -22,6 +22,7 @@ The application is not very complex but *I tried to use modern developing techni
 - **Volley**, it is a minimal and simple HTTP request client developed by Google for Android.
 - **GSON**, it is a powerful library to serialize and deserialize Object to and from json format.
 - **ZXing**, it is a multi-format code scanner library.
+- **Google ML kit**, it is a machine learning kit for _on device_ OCR feature.
 - **Pattern Design**, learned during Software engeering course.
 ## :gear: Setup
 
